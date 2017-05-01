@@ -1,0 +1,5 @@
+C:\Users\Miguel\Documents\HonoursProject\IrisService\IrisService\bin\IrisService.dll
+C:\Users\Miguel\Documents\HonoursProject\IrisService\IrisService\bin\IrisService.pdb
+C:\Users\Miguel\Documents\HonoursProject\IrisService\IrisService\obj\Debug\IrisService.csprojResolveAssemblyReference.cache
+C:\Users\Miguel\Documents\HonoursProject\IrisService\IrisService\obj\Debug\IrisService.dll
+C:\Users\Miguel\Documents\HonoursProject\IrisService\IrisService\obj\Debug\IrisService.pdb
