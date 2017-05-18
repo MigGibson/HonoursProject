@@ -5,10 +5,10 @@ from picamera import PiCamera
 
 class HoughCircle:
         
-		#Constructor method takes in the image name in full including type. *.jpg
-        def __init__(self, image_name):
+        #Constructor method takes in the image.
+        def __init__(self, img):
             #Get the image.
-            self.img = cv2.imread(image_name, 0)
+            self.img = img
             
             #Removes noise.
             self.img = cv2.medianBlur(self.img, 5)
