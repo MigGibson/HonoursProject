@@ -28,3 +28,4 @@ while running:
             
             #Start the capture process.
             print currentUID
+            previousUID = currentUID
