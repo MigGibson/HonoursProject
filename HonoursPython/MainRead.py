@@ -10,10 +10,7 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
 
-#Pi Camera instantiation.
-piCam = PiCamera()
-#Raw capture is the RGB array of the pixels that the camera sees.
-rawCapture = PiRGBArray(piCam)
+
 
 running = True
 previousUID = ""
@@ -43,6 +40,12 @@ while running:
             #Start the capture process.
             print currentUID
             previousUID = currentUID
+            
+            #Pi Camera instantiation.
+            piCam = PiCamera()
+            
+            #Raw capture is the RGB array of the pixels that the camera sees.
+            rawCapture = PiRGBArray(piCam)
             
             #Need to give the camera time to take the image.
             time.sleep(0.1)
