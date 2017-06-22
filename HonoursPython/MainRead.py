@@ -1,5 +1,15 @@
+#NFC/RFID Imports
 import RPi.GPIO as GPIO
 import MFRC522
+
+#Pi Camera Imports
+from picamera.array import PiRGBArray
+from picamera import PiCamera
+
+#Pi Camera instantiation.
+piCam = PiCamera()
+#Raw capture is the RGB array of the pixels that the camera sees.
+rawCapture = PiRGBArray(piCam)
 
 running = True
 previousUID = ""
@@ -29,3 +39,15 @@ while running:
             #Start the capture process.
             print currentUID
             previousUID = currentUID
+            
+            #Need to give the camera time to take the image.
+            time.sleep(0.1)
+            
+            #Captures the image and stores it.
+            piCam.capture(rawCapture, format="bgr")
+            image = rawCapture.array
+            
+            #Display modified image.
+            cv2.imshow('detected circles', image)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
