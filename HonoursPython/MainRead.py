@@ -1,3 +1,6 @@
+#OpenCV
+import cv2
+
 #NFC/RFID Imports
 import RPi.GPIO as GPIO
 import MFRC522
