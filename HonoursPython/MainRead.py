@@ -5,6 +5,7 @@ import MFRC522
 #Pi Camera Imports
 from picamera.array import PiRGBArray
 from picamera import PiCamera
+import time
 
 #Pi Camera instantiation.
 piCam = PiCamera()
