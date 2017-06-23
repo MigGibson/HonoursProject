@@ -1,5 +1,8 @@
 #OpenCV
-import cv2
+#import cv2
+
+#HoughCircle
+from user import HoughCircle
 
 #NFC/RFID Imports
 import RPi.GPIO as GPIO
@@ -9,8 +12,6 @@ import MFRC522
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
-
-
 
 running = True
 previousUID = ""
@@ -54,7 +55,10 @@ while running:
             piCam.capture(rawCapture, format="bgr")
             image = rawCapture.array
             
+            #Calls the constructor method in HoughCircle.py
+            houghCircle = HoughCircle(image)
+            
             #Display modified image.
-            cv2.imshow('detected circles', image)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            #cv2.imshow('detected circles', image)
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
