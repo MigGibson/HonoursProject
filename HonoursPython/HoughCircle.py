@@ -21,7 +21,7 @@ class HoughCircle:
             self.cimg = cv2.cvtColor(self.img, cv2.COLOR_BGR2GRAY)
             
             #Identify the circles. HoughCircles(image, detection method, inverse ratio, min distance between detected centers, upper threshold, center threshold, min radius, max radius) 
-            self.circles = cv2.HoughCircles(self.cimg, cv2.cv.CV_HOUGH_GRADIENT, 1, 20, 30, 15, 0, 0)
+            self.circles = cv2.HoughCircles(self.cimg, cv2.CV_HOUGH_GRADIENT, 1, 20, 30, 15, 0, 0)
             self.circles = np.uint16(np.around(circles))
             
             #Display the circles.
