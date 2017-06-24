@@ -62,6 +62,6 @@ while running:
             #hCircle = HoughCircle.HoughCircle(image)
             
             #Display modified image.
-            cv2.imshow('detected circles', cimg)
+            cv2.imshow('detected circles', image)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
