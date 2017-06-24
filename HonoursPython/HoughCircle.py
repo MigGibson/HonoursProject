@@ -3,18 +3,22 @@ import numpy as np
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 
+from PIL import Image
+
 class HoughCircle:
         
         #Constructor method takes in the image.
         def __init__(self, img):
             #Get the image.
-            self.img = cv2.convertScaleAbs(img)
-            
+            #self.img = img
+			
+			self.img = Image.fromarray(np.uint8(img))
+			
             #Removes noise.
             self.img = cv2.medianBlur(self.img, 5)
             
             #Grayscales image.
-            #self.cimg = cv2.cvtColor(self.img, cv2.COLOR_GRAY2BGR)
+            self.cimg = cv2.cvtColor(self.img, cv2.COLOR_GRAY2BGR)
             
             #Identify the circles. HoughCircles(image, detection method, inverse ratio, min distance between detected centers, upper threshold, center threshold, min radius, max radius) 
             self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1, 5, 50, 30, 0, 0)
