@@ -58,12 +58,8 @@ while running:
             piCam.capture(rawCapture, format="bgr")
             image = rawCapture.array
             
-			#Test Gray
-			#Grayscales image.
-            cimg = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-			
             #Calls the constructor method in HoughCircle.py
-            #hCircle = HoughCircle.HoughCircle(image)
+            hCircle = HoughCircle.HoughCircle(image)
             
             #Display modified image.
             cv2.imshow('detected circles', cimg)
