@@ -11,9 +11,9 @@ class HoughCircle:
         def __init__(self, img):
             #Get the image.
             #self.img = img
-			
-			self.img = Image.fromarray(np.uint8(img))
-			
+            
+            self.img = Image.fromarray(np.uint8(img))
+            
             #Removes noise.
             self.img = cv2.medianBlur(self.img, 5)
             
