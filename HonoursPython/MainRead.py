@@ -43,8 +43,7 @@ while running:
             previousUID = currentUID
             
             #Testing an image from UBIRIS
-            image = cv2.imread('test.jpg')
-            cimg = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
+            image = cv2.imread('test.jpg', 0)
             
             #Pi Camera instantiation.
             #piCam = PiCamera()
