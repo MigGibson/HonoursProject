@@ -8,8 +8,8 @@ class HoughCircle:
         #Constructor method takes in the image.
         def __init__(self, img):
             #Get the image.
-            self.img = (img/256).astype('uint8')
-			
+            self.img = cv2.imread(img)
+            
             #Removes noise.
             self.img = cv2.medianBlur(self.img, 5)
             
