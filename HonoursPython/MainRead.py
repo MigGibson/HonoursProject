@@ -44,6 +44,7 @@ while running:
             
             #Testing an image from UBIRIS
             image = cv2.imread('test.jpg')
+            cimg = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
             
             #Pi Camera instantiation.
             #piCam = PiCamera()
@@ -59,9 +60,9 @@ while running:
             #image = rawCapture.array
             
             #Calls the constructor method in HoughCircle.py
-            hCircle = HoughCircle.HoughCircle(image)
+            #hCircle = HoughCircle.HoughCircle(image)
             
             #Display modified image.
-            #cv2.imshow('detected circles', image)
-            #cv2.waitKey(0)
-            #cv2.destroyAllWindows()
+            cv2.imshow('detected circles', cimg)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
