@@ -2,7 +2,7 @@
 #import cv2
 
 #HoughCircle
-from user import HoughCircle
+import HoughCircle
 
 #NFC/RFID Imports
 import RPi.GPIO as GPIO
