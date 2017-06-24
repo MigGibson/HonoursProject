@@ -23,7 +23,7 @@ class HoughCircle:
             #Identify the circles. HoughCircles(image, detection method, inverse ratio, min distance between detected centers, upper threshold, center threshold, min radius, max radius) 
             #self.circles = cv2.HoughCircles(self.cimg, cv2.HOUGH_GRADIENT, 1, 20, 30, 15, 0, 0)
             #self.circles = cv2.HoughCircles(self.cimg, cv2.HOUGH_GRADIENT, 1, 20)
-            self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1.2, 0)
+            self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1.2, 0.1)
             
             if self.circles is not None:
                 self.circles = np.uint16(np.around(self.circles))
