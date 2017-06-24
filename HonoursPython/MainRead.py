@@ -42,9 +42,9 @@ while running:
             print currentUID
             previousUID = currentUID
             
-			#Testing an image from UBIRIS
-			image = cv2.imread('test.jpg')
-			
+            #Testing an image from UBIRIS
+            image = cv2.imread('test.jpg')
+            
             #Pi Camera instantiation.
             #piCam = PiCamera()
             
