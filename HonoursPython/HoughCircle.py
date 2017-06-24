@@ -1,5 +1,4 @@
 import cv2
-import cv2.cv as cv
 
 import numpy as np
 from picamera.array import PiRGBArray
@@ -22,7 +21,7 @@ class HoughCircle:
             self.cimg = cv2.cvtColor(self.img, cv2.COLOR_BGR2GRAY)
             
             #Identify the circles. HoughCircles(image, detection method, inverse ratio, min distance between detected centers, upper threshold, center threshold, min radius, max radius) 
-            self.circles = cv2.HoughCircles(self.img, cv.CV_HOUGH_GRADIENT, 1, 5, 50, 30, 0, 0)
+            self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1, 5, 50, 30, 0, 0)
             self.circles = np.uint16(np.around(circles))
             
             #Display the circles.
