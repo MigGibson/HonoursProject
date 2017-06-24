@@ -10,12 +10,12 @@ class HoughCircle:
         #Constructor method takes in the image.
         def __init__(self, img):
             #Get the image.
-            #self.img = img
-            
-            self.img = Image.fromarray(np.uint8(img))
+            self.img = img
             
             #Removes noise.
             self.img = cv2.medianBlur(self.img, 5)
+            
+            self.img = Image.fromarray(np.uint8(self.img))
             
             #Grayscales image.
             self.cimg = cv2.cvtColor(self.img, cv2.COLOR_GRAY2BGR)
