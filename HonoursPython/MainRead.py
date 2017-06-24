@@ -56,7 +56,7 @@ while running:
             image = rawCapture.array
             
             #Calls the constructor method in HoughCircle.py
-            houghCircle = HoughCircle(image)
+            hCircle = HoughCircle(image)
             
             #Display modified image.
             #cv2.imshow('detected circles', image)
