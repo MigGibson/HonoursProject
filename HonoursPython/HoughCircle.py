@@ -14,7 +14,7 @@ class HoughCircle:
             self.img = np.uint8(img)
             
             #Removes noise.
-            self.img = cv2.medianBlur(self.img, 5)
+            #self.img = cv2.medianBlur(self.img, 5)
             
             #Grayscales image.
             #self.cimg = cv2.cvtColor(self.img, cv2.COLOR_GRAY2BGR)
