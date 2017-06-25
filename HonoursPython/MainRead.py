@@ -65,7 +65,6 @@ while running:
             hCircle = HoughCircle.HoughCircle(image)
             
             #Get the cropped image from the identified circle
-            #circle = hCircle.circles[0]
             fExtract = FeatureExtract.FeatureExtract(image, hCircle.circle)
             
             #Display modified image.
