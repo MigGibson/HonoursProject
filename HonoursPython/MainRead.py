@@ -66,11 +66,12 @@ while running:
             #Get the cropped image from the identified circle
             circle = hCircle.circles[0]
             
-            #original_image = Image.fromarray(hCircle.img)
-            #iris = original_image.crop((circle[0] - circle[2], circle[1] - circle[2], circle[0] + circle[2], circle[1] + circle[2]))
+            original_image = Image.fromarray(hCircle.img)
+            #                                   Left                    top             right           bottom
+            iris = original_image.crop((circle[0] - circle[2], circle[1] - circle[2], circle[2] * 2, circle[2] * 2))
             
             #Display modified image.
-            cv2.imshow('iris', hCircle.img)
+            cv2.imshow('iris', iris)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
             
