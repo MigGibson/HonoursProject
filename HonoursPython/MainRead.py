@@ -13,6 +13,8 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
 
+from PIL import Image
+
 running = True
 previousUID = ""
 
@@ -61,8 +63,13 @@ while running:
             #Calls the constructor method in HoughCircle.py
             hCircle = HoughCircle.HoughCircle(image)
             
+            #Get the cropped image from the identified circle
+            circle = houghCircle.circles[0]
+            iris = houghCircle.img.crop((circle[0] - circle[2], circle[1] - circle[2], circle[0] + circle[2], circle[1] + circle[2]))
+            
             #Display modified image.
-            #cv2.imshow('detected circles', cimg)
-            #cv2.waitKey(0)
-            #cv2.destroyAllWindows()
+            cv2.imshow('iris', iris)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
+            
             running = False

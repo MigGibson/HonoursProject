@@ -1,6 +1,6 @@
 import cv2
-
 import numpy as np
+
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 
@@ -37,8 +37,8 @@ class HoughCircle:
                     cv2.circle(self.img,(i[0],i[1]),i[2],(0,255,0),2)
                 
                 #Display modified image.
-                cv2.imshow('detected circles',self.img)
-                cv2.waitKey(0)
-                cv2.destroyAllWindows()
+                #cv2.imshow('detected circles',self.img)
+                #cv2.waitKey(0)
+                #cv2.destroyAllWindows()
             else:
                 print 'No circles found'
