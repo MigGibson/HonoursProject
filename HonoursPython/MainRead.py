@@ -70,8 +70,8 @@ while running:
             #                                   Left                    top             right           bottom
             #iris = original_image.crop((circle[0] - circle[2], circle[1] - circle[2], circle[2] * 2, circle[2] * 2))
             iris = original_image.crop((0, 0, 10, 10))
-			iris.show()
-			
+            iris.show()
+            
             #Display modified image.
             #cv2.imshow('iris', iris)
             #cv2.waitKey(0)
