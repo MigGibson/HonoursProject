@@ -14,6 +14,9 @@ class FeatureExtract:
             
             outer_radius = circle[2]
             
+			#Apply histogram equalization to get the accuracy of the features.
+			self.histo_img = cv2.equalizeHist(img)
+			
             #Output array[radius][360 degrees].
             #Our new feature extracted image.
             output_image = np.zeros((outer_radius - 15, 360))
@@ -31,7 +34,7 @@ class FeatureExtract:
                     new_y = circle[1] + (r * np.sin(rad))
                     
                     #Add the new point to the output image.
-                    output_image[r - 15][degree] = img[new_y][new_x]
+                    output_image[r - 15][degree] = self.histo_img[new_y][new_x]
             
             self.rubber_output_image = np.array(output_image, dtype = np.uint8)
             #Display modified image.
