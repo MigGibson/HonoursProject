@@ -35,7 +35,7 @@ class FeatureExtract:
                     output_image[r - 10][degree] = img[new_x][new_y]
                     #print output_image[r - 10][degree]
             
-            output_image.astype(uint8)
+            output_image.astype('uint8')
             #Display modified image.
             cv2.imshow('Feature Extraction', output_image)
             cv2.waitKey(0)
