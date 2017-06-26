@@ -33,8 +33,9 @@ class FeatureExtract:
                     #print img[new_x][new_y]
                     #Add the new point to the output image.
                     output_image[r - 10][degree] = img[new_x][new_y]
-                    print output_image[r - 10][degree]
+                    #print output_image[r - 10][degree]
             
+            output_image.astype(int)
             #Display modified image.
             cv2.imshow('Feature Extraction', output_image)
             cv2.waitKey(0)
