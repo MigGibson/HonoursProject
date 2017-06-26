@@ -14,9 +14,9 @@ class FeatureExtract:
             
             outer_radius = circle[2]
             
-			#Apply histogram equalization to get the accuracy of the features.
-			self.histo_img = cv2.equalizeHist(img)
-			
+            #Apply histogram equalization to get the accuracy of the features.
+            self.histo_img = cv2.equalizeHist(img)
+            
             #Output array[radius][360 degrees].
             #Our new feature extracted image.
             output_image = np.zeros((outer_radius - 15, 360))
