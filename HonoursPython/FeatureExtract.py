@@ -30,9 +30,10 @@ class FeatureExtract:
                     new_x = circle[0] + (r * np.cos(rad))
                     new_y = circle[1] + (r * np.sin(rad))
                     
-                    print img[new_x][new_y]
+                    #print img[new_x][new_y]
                     #Add the new point to the output image.
-                    #output_image[r - 10][degree] = img[new_x][new_y]
+                    output_image[r - 10][degree] = img[new_x][new_y]
+                    print output_image[r - 10][degree]
             
             #Display modified image.
             cv2.imshow('Feature Extraction', output_image)
