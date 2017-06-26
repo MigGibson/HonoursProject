@@ -31,7 +31,7 @@ class FeatureExtract:
                     new_y = circle[1] + (r * np.sin(rad))
                     
                     #Add the new point to the output image.
-                    output_image[r][degree] = img[new_y][new_x]
+                    output_image[r - 10][degree] = img[new_y][new_x]
             
             #Display modified image.
             cv2.imshow('Feature Extraction', img)
