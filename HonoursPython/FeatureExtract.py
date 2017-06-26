@@ -32,7 +32,7 @@ class FeatureExtract:
                     
                     #print img[new_x][new_y]
                     #Add the new point to the output image.
-                    output_image[r - 10][degree] = img[new_y][new_x]
+                    output_image[r - 10][degree] = img[new_x][new_y]
                     #print output_image[r - 10][degree]
             
             test_image = np.array(output_image, dtype = np.uint8)
