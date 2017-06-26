@@ -16,10 +16,10 @@ class FeatureExtract:
             
             #Output array[radius][360 degrees].
             #Our new feature extracted image.
-            output_image = np.zeros((outer_radius - 10, 360))
+            output_image = np.zeros((outer_radius, 360))
             
             #For each "row"/"ring"
-            for r in range(10, outer_radius):
+            for r in range(0, outer_radius - 1):
                 #all 360 degrees around the center
                 for degree in range(0, 360):
                     rad = np.radians(degree)
@@ -30,10 +30,8 @@ class FeatureExtract:
                     new_x = circle[0] + (r * np.cos(rad))
                     new_y = circle[1] + (r * np.sin(rad))
                     
-                    #print img[new_x][new_y]
                     #Add the new point to the output image.
-                    output_image[r - 10][degree] = img[new_x][new_y]
-                    #print output_image[r - 10][degree]
+                    output_image[r][degree] = img[new_y][new_x]
             
             test_image = np.array(output_image, dtype = np.uint8)
             #Display modified image.
