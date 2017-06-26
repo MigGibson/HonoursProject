@@ -68,8 +68,8 @@ while running:
             fExtract = FeatureExtract.FeatureExtract(image, hCircle.circle)
             
             #Display modified image.
-            cv2.imshow('iris', hCircle.img)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            #cv2.imshow('iris', hCircle.img)
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
             
             running = False

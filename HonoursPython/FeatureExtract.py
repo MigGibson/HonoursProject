@@ -34,6 +34,6 @@ class FeatureExtract:
                     output_image[r - 10][degree] = img[new_y][new_x]
             
             #Display modified image.
-            cv2.imshow('Feature Extraction', img)
+            cv2.imshow('Feature Extraction', output_image)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
