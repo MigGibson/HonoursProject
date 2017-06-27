@@ -40,6 +40,6 @@ class FeatureExtract:
             
             self.rubber_output_image = np.array(output_image, dtype = np.uint8)
             #Display modified image.
-            cv2.imshow('Feature Extraction', self.rubber_output_image)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            #cv2.imshow('Feature Extraction', self.rubber_output_image)
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
