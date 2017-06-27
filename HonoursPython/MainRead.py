@@ -68,9 +68,9 @@ while running:
             #Get the cropped image from the identified circle
             fExtract = FeatureExtract.FeatureExtract(image, hCircle.circle)
             
-			#Get the iris-code
-			tGenerate = TemplateGenerator.TemplateGenerator(fExtract.rubber_output_image, fExtract.height)
-			
+            #Get the iris-code
+            tGenerate = TemplateGenerator.TemplateGenerator(fExtract.rubber_output_image, fExtract.height)
+            
             #Display modified image.
             #cv2.imshow('iris', hCircle.img)
             #cv2.waitKey(0)
