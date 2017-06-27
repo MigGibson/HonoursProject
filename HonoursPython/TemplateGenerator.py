@@ -8,7 +8,7 @@ class TemplateGenerator:
         def __init__(self, img, height):
             
             #An array of size 8 to get the iris-code.
-            code = np.zeros((0, 7))
+            self.code = np.zeros((0, 7))
             
             #Break up the image into 8 parts (45 degrees of the circle).
             for i in range(1, 8)
@@ -19,3 +19,8 @@ class TemplateGenerator:
                 
                 #Cutting the image.
                 cropped_image = img[0:height, prev:next]
+                
+                print (np.mean(cropped_image))
+                
+                #Store the code after letting the mean go through checks.
+                self.code[i - 1] = 0
