@@ -22,6 +22,8 @@ previousUID = ""
 
 MIFAREReader = MFRC522.MFRC522()
 
+print "Started"
+
 while running:
 
     (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
