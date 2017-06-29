@@ -21,7 +21,7 @@ class TemplateGenerator:
             #np.maximum(accum, fimg, accum)
             
             #Break up the image into 8 parts (45 degrees of the circle).
-            for i in range(1, 8)
+            for i in range(1, 8):
                 
                 #Calculating the places to cut the image.
                 prev = (i - 1) * 45
