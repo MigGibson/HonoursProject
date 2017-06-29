@@ -11,14 +11,14 @@ class TemplateGenerator:
             self.code = np.zeros((0, 7))
             
             #Gabor filter.
-            kern = cv2.getGaborKernel((height, 360), 4.0, theta, 10.0, 0.5, 0, ktype=cv2.CV_32F)
+            kern = cv2.getGaborKernel((height, 360), 4.0, np.radians(90), 10.0, 0.5, 0, ktype=cv2.CV_32F)
             kern /= 1.5 * kern.sum()
             
             accum = np.zeros_like(img)
             fimg = cv2.filter2D(img, cv2.CV_8UC3, kern)
             np.maximum(accum, fimg, accum)
             
-            cv2.imshow('Part', cropped_image)
+            cv2.imshow('Garbor Filtered', accum)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
             
