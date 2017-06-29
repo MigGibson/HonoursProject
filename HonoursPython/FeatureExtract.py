@@ -14,8 +14,8 @@ class FeatureExtract:
             
             outer_radius = circle[2]
             
-			self.height = outer_radius - 15
-			
+            self.height = outer_radius - 15
+            
             #Apply histogram equalization to get the accuracy of the features.
             #self.histo_img = cv2.equalizeHist(img)
             
