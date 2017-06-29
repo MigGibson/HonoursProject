@@ -11,7 +11,7 @@ class TemplateGenerator:
             self.code = np.zeros((0, 7))
             
             #Gabor filter.
-            kern = cv2.getGaborKernel((height, 360), 4.0, np.radians(270), 10.0, 0.5, 0, ktype=cv2.CV_32F)
+            kern = cv2.getGaborKernel((height, 360), 4.0, np.radians(180), 10.0, 0.5, 0, ktype=cv2.CV_32F)
             kern /= 1.5 * kern.sum()
             
             accum = np.zeros_like(img)
