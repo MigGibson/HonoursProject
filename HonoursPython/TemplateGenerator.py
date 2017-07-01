@@ -11,26 +11,50 @@ class TemplateGenerator:
             self.code = np.zeros((0, 7))
             
             #Gabor filter.
-            kern = cv2.getGaborKernel((height, 360), 4.0, np.radians(180), 10.0, 0.5, 0, ktype=cv2.CV_32F)
-            kern /= 1.5 * kern.sum()
+            gKernel = cv2.getGaborKernel((height, 360), 4.0, np.radians(180), 10.0, 0.5, 0, ktype=cv2.CV_32F)
+            gKernel /= 1.5 * gKernel.sum()
             
-            accum = np.zeros_like(img)
-            fimg = cv2.filter2D(img, cv2.CV_8UC3, kern)
-            np.maximum(accum, fimg, accum)
+            gOutput = np.zeros_like(img)
+            filtered = cv2.filter2D(img, cv2.CV_8UC3, gKernel)
+            np.maximum(gOutput, filtered, gOutput)
             
-            cv2.imshow('Garbor Filtered', accum)
+            #cv2.imshow('Gabor Filtered', gOutput)
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
+            
+            #Thinning
+            iSize = np.size(gOutput)
+            tOutput = np.zeros(gOutput.shape, np.uint8)
+            
+            ret,gOutput = cv2.threshold(gOutput, 127, 255, cv2.THRESH_BINARY)
+            element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3,3))
+            done = False
+            
+            while(not done):
+                
+                eroded = cv2.erode(gOutput, element)
+                temp = cv2.dilate(eroded, element)
+                temp = cv2.subtract(gOutput, temp)
+                tOutput = cv2.bitwise_or(tOutput, temp)
+                gOutput = eroded.copy()
+            
+                zeros = iSize - cv2.countNonZero(gOutput)
+                if zeros == iSize:
+                    done = True
+            
+            cv2.imshow('Thinned', tOutput)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
             
             #Break up the image into 8 parts (45 degrees of the circle).
-            for i in range(1, 8):
+            #for i in range(1, 8):
                 
                 #Calculating the places to cut the image.
-                prev = (i - 1) * 45
-                next = ((i) * 45) - 1
+                #prev = (i - 1) * 45
+                #next = ((i) * 45) - 1
                 
                 #Cutting the image.
-                cropped_image = img[0:height - 1, prev:next]
+                #cropped_image = img[0:height - 1, prev:next]
                 
                 #cv2.imshow('Part', cropped_image)
                 #cv2.waitKey(0)
