@@ -76,7 +76,7 @@ namespace IrisService
         {
             DateTime date = DateTime.Now;
 
-            cmd = new MySqlCommand("INSERT INTO usertb VALUES ('@studentNum', '@pass', '@name', '@surname', '@type', '@card', '@date', 0);", connection);
+            cmd = new MySqlCommand("INSERT INTO usertb VALUES (@studentNum, @pass, @name, @surname, @type, @card, @date, 0);", connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@studentNum", studentNum);
             cmd.Parameters.AddWithValue("@pass", password);
@@ -95,7 +95,7 @@ namespace IrisService
         //Enrols the student's iris
         public void enrolUserIris(String cardUID, String irisHash)
         {
-            cmd = new MySqlCommand("INSERT INTO usertb VALUES ('@card', @irisHash);", connection);
+            cmd = new MySqlCommand("INSERT INTO usertb VALUES (@card, @irisHash);", connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@card", cardUID;
             cmd.Parameters.AddWithValue("@irisHash", irisHash);
@@ -160,14 +160,58 @@ namespace IrisService
         }
 
         //Attendance Process
-        public int takeAttendance(String cardUID, String irisHash)
+        //Takes attendance using the cardUID
+        //
+        public void takeAttendance(String cardUID)
         {
-            return 0;
+            String studentNum = "";
+
+            //Get the student number.
+            cmd = new MySqlCommand("SELECT * FROM usertb WHERE Card_UID = @cardUID AND Active = 0", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@cardUID", cardUID);
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //Getting the student number.
+                studentNum = reader["StudentNumber"].ToString();
+            }
+            connection.Close();
+            reader.Close();
+
+            if (studentNum == "")
+            {
+                return;
+            }
+
+            //Todays date.
+            String date = DateTime.Now.Date.ToString();
+
+            //Takes attendance
+            cmd = new MySqlCommand("INSERT INTO attendancetb VALUES (@studentNum, @date, 0);", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@studentNum", studentNum);
+            cmd.Parameters.AddWithValue("@date", date);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
 
-        public int takeAttendance(String cardUID, String secretHash)
+        //Update student's attendance
+        //Admin
+        //
+        public void updateStudentAttendance(String studentNum, int attendance)
         {
-            return 0;
+            cmd = new MySqlCommand("UPDATE attendancetb SET Attended = @attendance WHERE StudentNumber = @studentNum", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@studentNum", studentNum);
+            cmd.Parameters.AddWithValue("@attendance", attendance);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
 
         //User Management
@@ -192,7 +236,7 @@ namespace IrisService
             return false;
         }
 
-        //Called by admin.
+        //Admin
         public void deactivateUser(String studentNum)
         {
             cmd = new MySqlCommand("UPDATE usertb SET Active = 1 WHERE StudentNumber = @studentNum", connection);
@@ -202,6 +246,82 @@ namespace IrisService
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+        }
+
+        //View Records.
+        //Get the students that attended a certain day.
+        //
+        public List<String> getStudents(String date)
+        {
+            List<String> students = new List<String>();
+
+            cmd = new MySqlCommand("SELECT * FROM attendancetb WHERE AttendanceDate = @date ORDER BY StudentNumber ASC;", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@date", date);
+            connection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //Add all the students to the list.
+                students.Add(reader["StudentNumber"].ToString());
+            }
+
+            connection.Close();
+            reader.Close();
+
+            return students;
+        }
+
+        //Get all the dates with that a student has attended.
+        //
+        public List<String> getDates(String studentNum)
+        {
+            List<String> dates = new List<String>();
+
+            cmd = new MySqlCommand("SELECT DISTINCT AttendanceDate FROM attendancetb WHERE StudentNumber = @studentNum ORDER BY AttendanceDate DESC;", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@studentNum", studentNum);
+            connection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //Add all the students to the list.
+                dates.Add(reader["AttendanceDate"].ToString());
+            }
+
+            connection.Close();
+            reader.Close();
+
+            return dates;
+        }
+
+        //Get all the lectures that a lecturer has attended
+        //
+        public List<Lecture> getLectures(string studentNum)
+        {
+            List<Lecture> lectures = new List<Lecture>();
+
+            cmd = new MySqlCommand("SELECT * FROM lecturetb WHERE Lecturer_StudentNumber = @studentNum ORDER BY Lecture_ModuleCode ASC;", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@studentNum", studentNum);
+            connection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //Add all the lectures to the list.
+                lectures.Add(new Lecture(reader["Lecture_Name"].ToString(), reader["Lecture_AttendanceDate"].ToString(), reader["Lecturer_StudentNumber"].ToString(), reader["Lecture_ModuleCode"].ToString());
+            }
+
+            connection.Close();
+            reader.Close();
+
+            return lectures;
         }
     }
 }

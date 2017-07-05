@@ -65,4 +65,49 @@ namespace IrisService
             BodyStyle = WebMessageBodyStyle.Wrapped)]
         void deactivateUser(String studentNum);
     }
+
+    [DataContract]
+    public class Lecture
+    {
+        string name = "";
+        string attendanceDate = "";
+        string lecturer = "";
+        string moduleCode = "";
+
+        [DataMember]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        [DataMember]
+        public string AttendanceDate
+        {
+            get { return attendanceDate; }
+            set { attendanceDate = value; }
+        }
+
+        [DataMember]
+        public string Lecturer
+        {
+            get { return lecturer; }
+            set { lecturer = value; }
+        }
+
+        [DataMember]
+        public string ModuleCode
+        {
+            get { return moduleCode; }
+            set { moduleCode = value; }
+        }
+
+        public Lecture(string name, string attendanceDate, string lecturer, string moduleCode)
+        {
+            this.name = name;
+            this.attendanceDate = attendanceDate;
+            this.lecturer = lecturer;
+            this.moduleCode = moduleCode;
+        }
+    }
 }
