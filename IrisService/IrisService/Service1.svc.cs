@@ -205,7 +205,10 @@ namespace IrisService
 
         //Attendance Process
         //Takes attendance using the cardUID
-        public void takeAttendance(String cardUID)
+        //0 - Successful
+        //1 - Already Attended
+        //2 - Student doesn't exist.
+        public int takeAttendance(String cardUID)
         {
             String studentNum = "";
 
@@ -225,14 +228,36 @@ namespace IrisService
 
             if (studentNum == "")
             {
-                return;
+                return 2;
             }
 
+            //Check if the student has already attended the lecture.
+            String attendanceID = "";
+            //Get the student number.
+            cmd = new MySqlCommand("SELECT * FROM attendancetb WHERE StudentNumber = @studentNum", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@studentNum", studentNum);
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //Getting the attendance ID.
+                attendanceID = reader["Attendance_ID"].ToString();
+            }
+            connection.Close();
+            reader.Close();
+
+            if (attendanceID != "")
+            {
+                return 1;
+            }
+
+            //Take attendance.
             //Todays date.
             String date = DateTime.Now.Date.ToString();
 
             //Takes attendance
-            cmd = new MySqlCommand("INSERT INTO attendancetb VALUES (@studentNum, @date, 0);", connection);
+            cmd = new MySqlCommand("INSERT INTO attendancetb (StudentNumber, AttendanceDate, Attended) VALUES (@studentNum, @date, 0);", connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@studentNum", studentNum);
             cmd.Parameters.AddWithValue("@date", date);
@@ -240,6 +265,8 @@ namespace IrisService
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+
+            return 0;
         }
 
         //Update student's attendance

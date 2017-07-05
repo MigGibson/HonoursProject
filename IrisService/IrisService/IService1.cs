@@ -57,7 +57,7 @@ namespace IrisService
         [WebGet(UriTemplate = "/takeAttendance/{cardUID}",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped)]
-        void takeAttendance(String cardUID);
+        int takeAttendance(String cardUID);
 
         [OperationContract]
         [WebGet(UriTemplate = "/updateStudentAttendance/{studentNum}/{attendance}",
