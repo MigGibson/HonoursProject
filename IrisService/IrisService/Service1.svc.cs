@@ -7,6 +7,8 @@ using System.ServiceModel.Web;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace IrisService
 {
@@ -127,10 +129,18 @@ namespace IrisService
                 return 1;
             }
 
-            cmd = new MySqlCommand("INSERT INTO usertb VALUES (@card, @irisHash);", connection);
+            //Inserting Binary Data
+            MemoryStream memStream = new MemoryStream();
+            BinaryFormatter binForm = new BinaryFormatter();
+
+            memStream.Seek(0, SeekOrigin.Begin);
+            binForm.Serialize(memStream, irisHash);
+
+            cmd = new MySqlCommand("INSERT INTO iristb VALUES (@card, @irisHash);", connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@card", cardUID);
-            cmd.Parameters.AddWithValue("@irisHash", irisHash);
+            cmd.Parameters.Add("@irisHash", MySqlDbType.VarBinary, Int32.MaxValue);
+            cmd.Parameters["@irisHash"].Value = memStream.GetBuffer();
 
             connection.Open();
             cmd.ExecuteNonQuery();
