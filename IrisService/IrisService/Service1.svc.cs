@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 using System.Data;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -83,7 +84,7 @@ namespace IrisService
                 return 1;
             }
 
-            DateTime date = DateTime.Now;
+            String[] date = DateTime.Now.Date.ToString().Split();
 
             cmd = new MySqlCommand("INSERT INTO usertb VALUES (@studentNum, @pass, @name, @surname, @type, @card, @date, 0);", connection);
             cmd.CommandType = CommandType.Text;
@@ -93,7 +94,7 @@ namespace IrisService
             cmd.Parameters.AddWithValue("@surname", surname);
             cmd.Parameters.AddWithValue("@type", type);
             cmd.Parameters.AddWithValue("@card", cardUID);
-            cmd.Parameters.AddWithValue("@date", date.Date);
+            cmd.Parameters.AddWithValue("@date", date[0]);
 
             connection.Open();
             cmd.ExecuteNonQuery();
@@ -254,13 +255,13 @@ namespace IrisService
 
             //Take attendance.
             //Todays date.
-            String date = DateTime.Now.Date.ToString();
+            String[] date = DateTime.Now.Date.ToString().Split();
 
             //Takes attendance
             cmd = new MySqlCommand("INSERT INTO attendancetb (StudentNumber, AttendanceDate, Attended) VALUES (@studentNum, @date, 0);", connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@studentNum", studentNum);
-            cmd.Parameters.AddWithValue("@date", date);
+            cmd.Parameters.AddWithValue("@date", date[0]);
 
             connection.Open();
             cmd.ExecuteNonQuery();
@@ -323,7 +324,7 @@ namespace IrisService
         {
             List<String> students = new List<String>();
 
-            cmd = new MySqlCommand("SELECT * FROM attendancetb WHERE AttendanceDate = @date ORDER BY StudentNumber ASC;", connection);
+            cmd = new MySqlCommand("SELECT * FROM attendancetb WHERE AttendanceDate = @date AND Attended = 0 ORDER BY StudentNumber ASC;", connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@date", date);
             connection.Open();
@@ -347,7 +348,7 @@ namespace IrisService
         {
             List<String> dates = new List<String>();
 
-            cmd = new MySqlCommand("SELECT DISTINCT AttendanceDate FROM attendancetb WHERE StudentNumber = @studentNum ORDER BY AttendanceDate DESC;", connection);
+            cmd = new MySqlCommand("SELECT DISTINCT AttendanceDate FROM attendancetb WHERE StudentNumber = @studentNum AND Attended = 0 ORDER BY AttendanceDate DESC;", connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@studentNum", studentNum);
             connection.Open();
@@ -417,13 +418,13 @@ namespace IrisService
         //Start a lecture.
         public void startLecture(string moduleCode, string lectureName, string lecturerStudentNum)
         {
-            string date = DateTime.Now.Date.ToString();
+            String[] date = DateTime.Now.Date.ToString().Split();
 
-            cmd = new MySqlCommand("INSERT INTO lecturetb VALUES (@moduleCode, @lectureName, @date, @lecturerStudentNum);", connection);
+            cmd = new MySqlCommand("INSERT INTO lecturetb (Lecture_ModuleCode, Lecture_Name, Lecture_AttendanceDate, Lecturer_StudentNumber) VALUES (@moduleCode, @lectureName, @date, @lecturerStudentNum);", connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@moduleCode", moduleCode);
             cmd.Parameters.AddWithValue("@lectureName", lectureName);
-            cmd.Parameters.AddWithValue("@date", date);
+            cmd.Parameters.AddWithValue("@date", date[0]);
             cmd.Parameters.AddWithValue("@lecturerStudentNum", lecturerStudentNum);
 
             connection.Open();
@@ -437,13 +438,14 @@ namespace IrisService
         //2 - There is no lecture.
         public int checkStudentLatestLecture(string studentNum)
         {
-            string today = DateTime.Now.Date.ToString();
+            String[] today = DateTime.Now.Date.ToString().Split();
+            
             Lecture latestLecture = null;
 
             //Get the latest lecture.
             cmd = new MySqlCommand("SELECT * FROM lecturetb WHERE Lecture_AttendanceDate = @today ORDER BY LectureID DESC;", connection);
             cmd.CommandType = CommandType.Text;
-            cmd.Parameters.AddWithValue("@today", today);
+            cmd.Parameters.AddWithValue("@today", today[0]);
             connection.Open();
 
             reader = cmd.ExecuteReader();
@@ -464,9 +466,9 @@ namespace IrisService
 
             //If there is a lecture.
             //Check if the student has attended the lecture.
-            cmd = new MySqlCommand("SELECT * FROM attendancetb WHERE AttendanceDate = @today AND StudentNumber = @studentNum ORDER BY LectureID DESC;", connection);
+            cmd = new MySqlCommand("SELECT * FROM attendancetb WHERE AttendanceDate = @today AND StudentNumber = @studentNum", connection);
             cmd.CommandType = CommandType.Text;
-            cmd.Parameters.AddWithValue("@today", today);
+            cmd.Parameters.AddWithValue("@today", latestLecture.AttendanceDate);
             cmd.Parameters.AddWithValue("@studentNum", studentNum);
             connection.Open();
 
