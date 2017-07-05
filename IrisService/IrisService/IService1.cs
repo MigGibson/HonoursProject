@@ -39,13 +39,13 @@ namespace IrisService
         [WebGet(UriTemplate = "/enrolUser/{studentNum}/{name}/{surname}/{password}/{type}/{cardUID}",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped)]
-        void enrolUser(String studentNum, String name, String surname, String password, String type, String cardUID);
+        int enrolUser(String studentNum, String name, String surname, String password, String type, String cardUID);
 
         [OperationContract]
         [WebGet(UriTemplate = "/enrolUserIris/{cardUID}/{irisHash}",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped)]
-        void enrolUserIris(String cardUID, String irisHash);
+        int enrolUserIris(String cardUID, String irisHash);
 
         [OperationContract]
         [WebGet(UriTemplate = "/checkEnrolmentCompletion/{studentNum}",
@@ -63,7 +63,7 @@ namespace IrisService
         [WebGet(UriTemplate = "/updateStudentAttendance/{studentNum}/{attendance}",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped)]
-        void updateStudentAttendance(String studentNum, int attendance);
+        void updateStudentAttendance(String studentNum, String attendance);
 
         [OperationContract]
         [WebGet(UriTemplate = "/doesUserExist/{studentNum}",

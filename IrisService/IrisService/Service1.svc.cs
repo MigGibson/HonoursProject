@@ -72,8 +72,15 @@ namespace IrisService
 
         //Step 1:
         //Enrols user with all their details.
-        public void enrolUser(String studentNum, String name, String surname, String password, String type, String cardUID)
+        //0 - Successful
+        //1 - Already exists in DB.
+        public int enrolUser(String studentNum, String name, String surname, String password, String type, String cardUID)
         {
+            if (doesUserExist(studentNum))
+            {
+                return 1;
+            }
+
             DateTime date = DateTime.Now;
 
             cmd = new MySqlCommand("INSERT INTO usertb VALUES (@studentNum, @pass, @name, @surname, @type, @card, @date, 0);", connection);
@@ -89,20 +96,47 @@ namespace IrisService
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+
+            return 0;
         }
 
         //Step 2:
         //Enrols the student's iris
-        public void enrolUserIris(String cardUID, String irisHash)
+        //0 - Successful
+        //1 - Already exists in DB.
+        public int enrolUserIris(String cardUID, String irisHash)
         {
+            String studentNum = "";
+
+            //Get the student number.
+            cmd = new MySqlCommand("SELECT * FROM usertb WHERE Card_UID = @cardUID AND Active = 0", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@cardUID", cardUID);
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //Getting the student number.
+                studentNum = reader["StudentNumber"].ToString();
+            }
+            connection.Close();
+            reader.Close();
+
+            if (studentNum == "")
+            {
+                return 1;
+            }
+
             cmd = new MySqlCommand("INSERT INTO usertb VALUES (@card, @irisHash);", connection);
             cmd.CommandType = CommandType.Text;
-            cmd.Parameters.AddWithValue("@card", cardUID;
+            cmd.Parameters.AddWithValue("@card", cardUID);
             cmd.Parameters.AddWithValue("@irisHash", irisHash);
 
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+
+            return 0;
         }
 
         //Check the current enrolment status of a user.
@@ -200,7 +234,7 @@ namespace IrisService
 
         //Update student's attendance
         //Admin
-        public void updateStudentAttendance(String studentNum, int attendance)
+        public void updateStudentAttendance(String studentNum, String attendance)
         {
             cmd = new MySqlCommand("UPDATE attendancetb SET Attended = @attendance WHERE StudentNumber = @studentNum", connection);
             cmd.CommandType = CommandType.Text;
@@ -310,7 +344,7 @@ namespace IrisService
             while (reader.Read())
             {
                 //Add all the lectures to the list.
-                lectures.Add(new Lecture(reader["Lecture_Name"].ToString(), reader["Lecture_AttendanceDate"].ToString(), reader["Lecturer_StudentNumber"].ToString(), reader["Lecture_ModuleCode"].ToString());
+                lectures.Add(new Lecture(reader["Lecture_Name"].ToString(), reader["Lecture_AttendanceDate"].ToString(), reader["Lecturer_StudentNumber"].ToString(), reader["Lecture_ModuleCode"].ToString()));
             }
 
             connection.Close();
@@ -334,7 +368,7 @@ namespace IrisService
             while (reader.Read())
             {
                 //Add all the lectures to the list.
-                lectures.Add(new Lecture(reader["Lecture_Name"].ToString(), reader["Lecture_AttendanceDate"].ToString(), reader["Lecturer_StudentNumber"].ToString(), reader["Lecture_ModuleCode"].ToString());
+                lectures.Add(new Lecture(reader["Lecture_Name"].ToString(), reader["Lecture_AttendanceDate"].ToString(), reader["Lecturer_StudentNumber"].ToString(), reader["Lecture_ModuleCode"].ToString()));
             }
 
             connection.Close();
