@@ -54,6 +54,18 @@ namespace IrisService
         string checkEnrolmentCompletion(String studentNum);
 
         [OperationContract]
+        [WebGet(UriTemplate = "/takeAttendance/{cardUID}",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        void takeAttendance(String cardUID);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/updateStudentAttendance/{studentNum}/{attendance}",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        void updateStudentAttendance(String studentNum, int attendance);
+
+        [OperationContract]
         [WebGet(UriTemplate = "/doesUserExist/{studentNum}",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped)]
@@ -64,6 +76,42 @@ namespace IrisService
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped)]
         void deactivateUser(String studentNum);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/getStudents/{date}",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        List<String> getStudents(String date);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/getDates/{studentNum}",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        List<String> getDates(String studentNum);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/getLectures/{studentNum}",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        List<Lecture> getLectures(string studentNum);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/getStudentLectures/{studentNum}",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        List<Lecture> getStudentLectures(string studentNum);
+        
+        [OperationContract]
+        [WebGet(UriTemplate = "/startLecture/{moduleCode}/{lectureName}/{lecturerStudentNum}",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        void startLecture(string moduleCode, string lectureName, string lecturerStudentNum);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/checkStudentLatestLecture/{studentNum}",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        int checkStudentLatestLecture(string studentNum);
     }
 
     [DataContract]

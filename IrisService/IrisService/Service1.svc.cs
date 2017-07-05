@@ -161,7 +161,6 @@ namespace IrisService
 
         //Attendance Process
         //Takes attendance using the cardUID
-        //
         public void takeAttendance(String cardUID)
         {
             String studentNum = "";
@@ -201,7 +200,6 @@ namespace IrisService
 
         //Update student's attendance
         //Admin
-        //
         public void updateStudentAttendance(String studentNum, int attendance)
         {
             cmd = new MySqlCommand("UPDATE attendancetb SET Attended = @attendance WHERE StudentNumber = @studentNum", connection);
@@ -250,7 +248,6 @@ namespace IrisService
 
         //View Records.
         //Get the students that attended a certain day.
-        //
         public List<String> getStudents(String date)
         {
             List<String> students = new List<String>();
@@ -275,7 +272,6 @@ namespace IrisService
         }
 
         //Get all the dates with that a student has attended.
-        //
         public List<String> getDates(String studentNum)
         {
             List<String> dates = new List<String>();
@@ -300,7 +296,6 @@ namespace IrisService
         }
 
         //Get all the lectures that a lecturer has attended
-        //
         public List<Lecture> getLectures(string studentNum)
         {
             List<Lecture> lectures = new List<Lecture>();
@@ -322,6 +317,100 @@ namespace IrisService
             reader.Close();
 
             return lectures;
+        }
+
+        //Get all the lectures that a student has attended.
+        public List<Lecture> getStudentLectures(string studentNum)
+        {
+            List<Lecture> lectures = new List<Lecture>();
+
+            cmd = new MySqlCommand("SELECT * FROM lecturetb, attendancetb WHERE attendancetb.StudentNumber = @studentNum AND attendancetb.AttendanceDate = lecturetb.Lecture_AttendanceDate ORDER BY Lecture_ModuleCode ASC;", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@studentNum", studentNum);
+            connection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //Add all the lectures to the list.
+                lectures.Add(new Lecture(reader["Lecture_Name"].ToString(), reader["Lecture_AttendanceDate"].ToString(), reader["Lecturer_StudentNumber"].ToString(), reader["Lecture_ModuleCode"].ToString());
+            }
+
+            connection.Close();
+            reader.Close();
+
+            return lectures;
+        }
+
+        //Start a lecture.
+        public void startLecture(string moduleCode, string lectureName, string lecturerStudentNum)
+        {
+            string date = DateTime.Now.Date.ToString();
+
+            cmd = new MySqlCommand("INSERT INTO lecturetb VALUES (@moduleCode, @lectureName, @date, @lecturerStudentNum);", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@moduleCode", moduleCode);
+            cmd.Parameters.AddWithValue("@lectureName", lectureName);
+            cmd.Parameters.AddWithValue("@date", date);
+            cmd.Parameters.AddWithValue("@lecturerStudentNum", lecturerStudentNum);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        //Check if student has attended the latest lecture.
+        //0 - Student has attended
+        //1 - Student has not attended
+        //2 - There is no lecture.
+        public int checkStudentLatestLecture(string studentNum)
+        {
+            string today = DateTime.Now.Date.ToString();
+            Lecture latestLecture = null;
+
+            //Get the latest lecture.
+            cmd = new MySqlCommand("SELECT * FROM lecturetb WHERE Lecture_AttendanceDate = @today ORDER BY LectureID DESC;", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@today", today);
+            connection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //Get latest lecture.
+                latestLecture = new Lecture(reader["Lecture_Name"].ToString(), reader["Lecture_AttendanceDate"].ToString(), reader["Lecturer_StudentNumber"].ToString(), reader["Lecture_ModuleCode"].ToString());
+            }
+
+            connection.Close();
+            reader.Close();
+
+            if (latestLecture == null)
+            {
+                return 2;
+            }
+
+            //If there is a lecture.
+            //Check if the student has attended the lecture.
+            cmd = new MySqlCommand("SELECT * FROM attendancetb WHERE AttendanceDate = @today AND StudentNumber = @studentNum ORDER BY LectureID DESC;", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@today", today);
+            cmd.Parameters.AddWithValue("@studentNum", studentNum);
+            connection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //There is a student.
+                return 0;
+            }
+
+            connection.Close();
+            reader.Close();
+
+            return 1;
         }
     }
 }
