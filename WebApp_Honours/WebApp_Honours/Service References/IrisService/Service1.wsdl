@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:55250/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:55250/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:55250/Service1.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:55250/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/IrisService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_loginUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:loginUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_loginUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:loginUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_startEnrolment_InputMessage">
+    <wsdl:part name="parameters" element="tns:startEnrolment" />
+  </wsdl:message>
+  <wsdl:message name="IService1_startEnrolment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:startEnrolmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_endEnrolment_InputMessage">
+    <wsdl:part name="parameters" element="tns:endEnrolment" />
+  </wsdl:message>
+  <wsdl:message name="IService1_endEnrolment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:endEnrolmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getEnrolmentStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:getEnrolmentStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getEnrolmentStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getEnrolmentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_enrolUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:enrolUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_enrolUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:enrolUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_enrolUserIris_InputMessage">
+    <wsdl:part name="parameters" element="tns:enrolUserIris" />
+  </wsdl:message>
+  <wsdl:message name="IService1_enrolUserIris_OutputMessage">
+    <wsdl:part name="parameters" element="tns:enrolUserIrisResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_checkEnrolmentCompletion_InputMessage">
+    <wsdl:part name="parameters" element="tns:checkEnrolmentCompletion" />
+  </wsdl:message>
+  <wsdl:message name="IService1_checkEnrolmentCompletion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:checkEnrolmentCompletionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_takeAttendance_InputMessage">
+    <wsdl:part name="parameters" element="tns:takeAttendance" />
+  </wsdl:message>
+  <wsdl:message name="IService1_takeAttendance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:takeAttendanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_updateStudentAttendance_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateStudentAttendance" />
+  </wsdl:message>
+  <wsdl:message name="IService1_updateStudentAttendance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateStudentAttendanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_doesUserExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:doesUserExist" />
+  </wsdl:message>
+  <wsdl:message name="IService1_doesUserExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:doesUserExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_deactivateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:deactivateUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_deactivateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deactivateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_removeUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:removeUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_removeUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:removeUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAttendance_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAttendance" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getAttendance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAttendanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getEnrolledStudents_InputMessage">
+    <wsdl:part name="parameters" element="tns:getEnrolledStudents" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getEnrolledStudents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getEnrolledStudentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getStudents_InputMessage">
+    <wsdl:part name="parameters" element="tns:getStudents" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getStudents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getStudentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getDates_InputMessage">
+    <wsdl:part name="parameters" element="tns:getDates" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getDates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getDatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getLectures_InputMessage">
+    <wsdl:part name="parameters" element="tns:getLectures" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getLectures_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getLecturesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getStudentLectures_InputMessage">
+    <wsdl:part name="parameters" element="tns:getStudentLectures" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getStudentLectures_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getStudentLecturesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_startLecture_InputMessage">
+    <wsdl:part name="parameters" element="tns:startLecture" />
+  </wsdl:message>
+  <wsdl:message name="IService1_startLecture_OutputMessage">
+    <wsdl:part name="parameters" element="tns:startLectureResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_checkStudentLatestLecture_InputMessage">
+    <wsdl:part name="parameters" element="tns:checkStudentLatestLecture" />
+  </wsdl:message>
+  <wsdl:message name="IService1_checkStudentLatestLecture_OutputMessage">
+    <wsdl:part name="parameters" element="tns:checkStudentLatestLectureResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="loginUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/loginUser" message="tns:IService1_loginUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/loginUserResponse" message="tns:IService1_loginUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="startEnrolment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/startEnrolment" message="tns:IService1_startEnrolment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/startEnrolmentResponse" message="tns:IService1_startEnrolment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="endEnrolment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/endEnrolment" message="tns:IService1_endEnrolment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/endEnrolmentResponse" message="tns:IService1_endEnrolment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getEnrolmentStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getEnrolmentStatus" message="tns:IService1_getEnrolmentStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getEnrolmentStatusResponse" message="tns:IService1_getEnrolmentStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="enrolUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/enrolUser" message="tns:IService1_enrolUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/enrolUserResponse" message="tns:IService1_enrolUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="enrolUserIris">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/enrolUserIris" message="tns:IService1_enrolUserIris_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/enrolUserIrisResponse" message="tns:IService1_enrolUserIris_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="checkEnrolmentCompletion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/checkEnrolmentCompletion" message="tns:IService1_checkEnrolmentCompletion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/checkEnrolmentCompletionResponse" message="tns:IService1_checkEnrolmentCompletion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="takeAttendance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/takeAttendance" message="tns:IService1_takeAttendance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/takeAttendanceResponse" message="tns:IService1_takeAttendance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateStudentAttendance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/updateStudentAttendance" message="tns:IService1_updateStudentAttendance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/updateStudentAttendanceResponse" message="tns:IService1_updateStudentAttendance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="doesUserExist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/doesUserExist" message="tns:IService1_doesUserExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/doesUserExistResponse" message="tns:IService1_doesUserExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deactivateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/deactivateUser" message="tns:IService1_deactivateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/deactivateUserResponse" message="tns:IService1_deactivateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="removeUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/removeUser" message="tns:IService1_removeUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/removeUserResponse" message="tns:IService1_removeUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAttendance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getAttendance" message="tns:IService1_getAttendance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getAttendanceResponse" message="tns:IService1_getAttendance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getEnrolledStudents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getEnrolledStudents" message="tns:IService1_getEnrolledStudents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getEnrolledStudentsResponse" message="tns:IService1_getEnrolledStudents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getStudents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getStudents" message="tns:IService1_getStudents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getStudentsResponse" message="tns:IService1_getStudents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getDates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getDates" message="tns:IService1_getDates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getDatesResponse" message="tns:IService1_getDates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getLectures">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getLectures" message="tns:IService1_getLectures_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getLecturesResponse" message="tns:IService1_getLectures_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getStudentLectures">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getStudentLectures" message="tns:IService1_getStudentLectures_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getStudentLecturesResponse" message="tns:IService1_getStudentLectures_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="startLecture">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/startLecture" message="tns:IService1_startLecture_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/startLectureResponse" message="tns:IService1_startLecture_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="checkStudentLatestLecture">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/checkStudentLatestLecture" message="tns:IService1_checkStudentLatestLecture_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/checkStudentLatestLectureResponse" message="tns:IService1_checkStudentLatestLecture_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="S" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="loginUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/loginUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startEnrolment">
+      <soap:operation soapAction="http://tempuri.org/IService1/startEnrolment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="endEnrolment">
+      <soap:operation soapAction="http://tempuri.org/IService1/endEnrolment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEnrolmentStatus">
+      <soap:operation soapAction="http://tempuri.org/IService1/getEnrolmentStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="enrolUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/enrolUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="enrolUserIris">
+      <soap:operation soapAction="http://tempuri.org/IService1/enrolUserIris" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkEnrolmentCompletion">
+      <soap:operation soapAction="http://tempuri.org/IService1/checkEnrolmentCompletion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="takeAttendance">
+      <soap:operation soapAction="http://tempuri.org/IService1/takeAttendance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateStudentAttendance">
+      <soap:operation soapAction="http://tempuri.org/IService1/updateStudentAttendance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doesUserExist">
+      <soap:operation soapAction="http://tempuri.org/IService1/doesUserExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deactivateUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/deactivateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/removeUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttendance">
+      <soap:operation soapAction="http://tempuri.org/IService1/getAttendance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEnrolledStudents">
+      <soap:operation soapAction="http://tempuri.org/IService1/getEnrolledStudents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStudents">
+      <soap:operation soapAction="http://tempuri.org/IService1/getStudents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDates">
+      <soap:operation soapAction="http://tempuri.org/IService1/getDates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLectures">
+      <soap:operation soapAction="http://tempuri.org/IService1/getLectures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStudentLectures">
+      <soap:operation soapAction="http://tempuri.org/IService1/getStudentLectures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startLecture">
+      <soap:operation soapAction="http://tempuri.org/IService1/startLecture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkStudentLatestLecture">
+      <soap:operation soapAction="http://tempuri.org/IService1/checkStudentLatestLecture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="S" binding="tns:S">
+      <soap:address location="http://localhost:55250/Service1.svc/soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

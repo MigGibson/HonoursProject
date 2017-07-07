@@ -78,6 +78,24 @@ namespace IrisService
         void deactivateUser(String studentNum);
 
         [OperationContract]
+        [WebGet(UriTemplate = "/removeUser/{studentNum}",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        void removeUser(String studentNum);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/getAttendance/",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        List<String> getAttendance();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/getEnrolledStudents/",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        List<String> getEnrolledStudents();
+
+        [OperationContract]
         [WebGet(UriTemplate = "/getStudents/{date}",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped)]

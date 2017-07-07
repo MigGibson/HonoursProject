@@ -307,6 +307,7 @@ namespace IrisService
         }
 
         //Admin
+        //Deactivate User
         public void deactivateUser(String studentNum)
         {
             cmd = new MySqlCommand("UPDATE usertb SET Active = 1 WHERE StudentNumber = @studentNum", connection);
@@ -318,7 +319,66 @@ namespace IrisService
             connection.Close();
         }
 
+        //Remove users that haven't fully enrolled.
+        public void removeUser(String studentNum)
+        {
+            cmd = new MySqlCommand("DELETE FROM usertb WHERE StudentNumber = @studentNum;", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@studentNum", studentNum);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
         //View Records.
+        //All the students that have attended every lecture.
+        public List<String> getAttendance()
+        {
+            List<String> students = new List<String>();
+
+            cmd = new MySqlCommand("SELECT * FROM attendancetb ORDER BY StudentNumber ASC;", connection);
+            cmd.CommandType = CommandType.Text;
+            connection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //Add all the students to the list.
+                students.Add(reader["StudentNumber"].ToString() + "," + reader["AttendanceDate"].ToString() + "," + reader["Attended"].ToString());
+            }
+
+            connection.Close();
+            reader.Close();
+
+            return students;
+        }
+
+        //Get students that have enrolled.
+        public List<String> getEnrolledStudents()
+        {
+            List<String> students = new List<String>();
+
+            cmd = new MySqlCommand("SELECT * FROM usertb WHERE Type = @type AND Active = 0 ORDER BY StudentNumber ASC;", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@type", "Student");
+            connection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //Add all the students to the list.
+                students.Add(reader["StudentNumber"].ToString() + "," + reader["Name"].ToString() + "," + reader["Surname"].ToString() + "," + reader["EnrolmentDate"].ToString());
+            }
+
+            connection.Close();
+            reader.Close();
+
+            return students;
+        }
+        
         //Get the students that attended a certain day.
         public List<String> getStudents(String date)
         {
@@ -348,7 +408,7 @@ namespace IrisService
         {
             List<String> dates = new List<String>();
 
-            cmd = new MySqlCommand("SELECT DISTINCT AttendanceDate FROM attendancetb WHERE StudentNumber = @studentNum AND Attended = 0 ORDER BY AttendanceDate DESC;", connection);
+            cmd = new MySqlCommand("SELECT * FROM attendancetb WHERE StudentNumber = @studentNum ORDER BY AttendanceDate DESC;", connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@studentNum", studentNum);
             connection.Open();
@@ -358,7 +418,7 @@ namespace IrisService
             while (reader.Read())
             {
                 //Add all the students to the list.
-                dates.Add(reader["AttendanceDate"].ToString());
+                dates.Add(reader["StudentNumber"].ToString() + "," + reader["AttendanceDate"].ToString() + "," + reader["Attended"].ToString());
             }
 
             connection.Close();
