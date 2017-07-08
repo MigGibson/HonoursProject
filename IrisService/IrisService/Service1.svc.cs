@@ -157,8 +157,22 @@ namespace IrisService
             bool iristb = false;
             String cardUID = "";
 
+            String test = "";
+
+            //Need to add if the student number is the card UID.
+            //If it is then we should check with theh card UID and not the student number.
+            if (studentNum.Contains("."))
+            {
+                //The student number is a cardUID.
+                test = "Card_UID";
+            }
+            else
+            {
+                test = "StudentNumber";
+            }
+
             //Checking if the user is in the user table.
-            cmd = new MySqlCommand("SELECT * FROM usertb WHERE StudentNumber = @studentNum AND Active = 0", connection);
+            cmd = new MySqlCommand("SELECT * FROM usertb WHERE " + test + " = @studentNum AND Active = 0", connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@studentNum", studentNum);
             connection.Open();
