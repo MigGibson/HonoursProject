@@ -42,7 +42,7 @@ class TemplateGenerator:
                 if zeros == iSize:
                     done = True
             
-            cv2.imshow('Thinned', gOutput)
+            cv2.imshow('Thinned', tOutput)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
             
