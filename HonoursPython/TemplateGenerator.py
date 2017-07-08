@@ -38,13 +38,17 @@ class TemplateGenerator:
                 tOutput = cv2.bitwise_or(tOutput, temp)
                 gOutput = eroded.copy()
             
+                cv2.imshow('Thinned', tOutput)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
+            
                 zeros = iSize - cv2.countNonZero(gOutput)
                 if zeros == iSize:
                     done = True
             
-            cv2.imshow('Thinned', gOutput)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            #cv2.imshow('Thinned', gOutput)
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
             
             #Break up the image into 8 parts (45 degrees of the circle).
             #for i in range(1, 8):
