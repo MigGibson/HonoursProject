@@ -8,7 +8,7 @@ class TemplateGenerator:
         def __init__(self, img, height):
             
             #An array of size 8 to get the iris-code.
-            self.divisionSize = 8
+            self.divisionSize = 16
             self.code = np.zeros(self.divisionSize)
             
             #Gabor filter.
