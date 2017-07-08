@@ -8,7 +8,8 @@ class TemplateGenerator:
         def __init__(self, img, height):
             
             #An array of size 8 to get the iris-code.
-            self.code = np.zeros(8)
+            self.divisionSize = 8
+            self.code = np.zeros(self.divisionSize)
             
             #Gabor filter.
             gKernel = cv2.getGaborKernel((height, 360), 4.0, np.radians(180), 10.0, 0.5, 0, ktype=cv2.CV_32F)
@@ -50,11 +51,11 @@ class TemplateGenerator:
             print self.code.size
             
             #Break up the image into 8 parts (45 degrees of the circle).
-            for i in range(1, 8):
+            for i in range(1, self.divisionSize):
                 
                 #Calculating the places to cut the image.
-                prev = (i - 1) * 45
-                next = ((i) * 45) - 1
+                prev = (i - 1) * (360 / self.divisionSize)
+                next = ((i) * (360 / self.divisionSize)) - 1
                 
                 #Cutting the image.
                 cropped_image = img[0:height - 1, prev:next]
@@ -67,9 +68,10 @@ class TemplateGenerator:
                 mean = np.mean(cropped_image)
                 
                 print 'Mean:'
+                print i
                 print mean
                 
-                if mean > 0.5:
+                if mean > 127.5:
                     self.code[i - 1] = 1
                 else:
                     self.code[i - 1] = 0
