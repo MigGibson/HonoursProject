@@ -26,7 +26,7 @@ class TemplateGenerator:
             iSize = np.size(gOutput)
             tOutput = np.zeros(gOutput.shape, np.uint8)
             
-            ret,gOutput = cv2.threshold(gOutput, 127, 255, cv2.THRESH_BINARY)
+            ret,gOutput = cv2.threshold(gOutput, 50, 255, cv2.THRESH_BINARY)
             element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3,3))
             done = False
             
