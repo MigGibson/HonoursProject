@@ -38,27 +38,38 @@ class TemplateGenerator:
                 tOutput = cv2.bitwise_or(tOutput, temp)
                 gOutput = eroded.copy()
             
-                zeros = iSize - cv2.countNonZero(gOutput)
-                if zeros == iSize:
+                total = iSize - cv2.countNonZero(gOutput)
+                if total == iSize:
                     done = True
             
-            cv2.imshow('Thinned', tOutput)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            #cv2.imshow('Thinned', tOutput)
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
+            
+            print 'Size:'
+            print self.code.size
             
             #Break up the image into 8 parts (45 degrees of the circle).
-            #for i in range(1, 8):
+            for i in range(1, 8):
                 
                 #Calculating the places to cut the image.
-                #prev = (i - 1) * 45
-                #next = ((i) * 45) - 1
+                prev = (i - 1) * 45
+                next = ((i) * 45) - 1
                 
                 #Cutting the image.
-                #cropped_image = img[0:height - 1, prev:next]
+                cropped_image = img[0:height - 1, prev:next]
                 
                 #cv2.imshow('Part', cropped_image)
                 #cv2.waitKey(0)
                 #cv2.destroyAllWindows()
                 
                 #Store the code after letting the mean go through checks.
-                #self.code[i - 1] = 0
+                mean = np.mean(cropped_image)
+				
+				print 'Mean:'
+				print mean
+				
+                if mean > 0.5:
+                    self.code[i - 1] = 1
+                else:
+                    self.code[i - 1] = 0
