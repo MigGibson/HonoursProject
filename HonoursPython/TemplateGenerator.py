@@ -8,7 +8,7 @@ class TemplateGenerator:
         def __init__(self, img, height):
             
             #An array of size 8 to get the iris-code.
-            self.code = np.array([0, 7])
+            self.code = np.zeros(8)
             
             #Gabor filter.
             gKernel = cv2.getGaborKernel((height, 360), 4.0, np.radians(180), 10.0, 0.5, 0, ktype=cv2.CV_32F)
