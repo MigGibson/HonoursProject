@@ -65,10 +65,10 @@ class TemplateGenerator:
                 
                 #Store the code after letting the mean go through checks.
                 mean = np.mean(cropped_image)
-				
-				print 'Mean:'
-				print mean
-				
+                
+                print 'Mean:'
+                print mean
+                
                 if mean > 0.5:
                     self.code[i - 1] = 1
                 else:
