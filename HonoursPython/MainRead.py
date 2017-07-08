@@ -17,8 +17,12 @@ import time
 
 from PIL import Image
 
+#To send a http RESTful request to service.
+import urllib
+
 running = True
 previousUID = ""
+process = -1
 
 MIFAREReader = MFRC522.MFRC522()
 
@@ -48,6 +52,30 @@ while running:
             print currentUID
             previousUID = currentUID
             
+            #Validate user and what their intended process is.
+            
+            #Initiates the opener to send the HTTP request.
+            opener = urllib.FancyURLopener({})
+            
+            #Send the request.
+            request = opener.open("http://192.168.0.19:44556/Service1.svc/checkEnrolmentCompletion/" + cardUID)
+            response = request.read()
+            
+            #If the response is not empty.
+            if response != "{\"checkEnrolmentCompletionResult\":\"\"}":
+                answer = response[36,-2]
+                
+                if answer == "Enrolment Complete.":
+                    process = 0
+                    
+                if answer == "Details have been submitted. Awaiting iris enrolment.":
+                    process = 1
+                    
+                if process == -1:
+                    GPIO.cleanup()
+                    #TODO: Set the rgb light to red.
+                    break
+            
             #Testing an image from UBIRIS
             image = cv2.imread('test.jpg', 0)
             
@@ -71,11 +99,12 @@ while running:
             fExtract = FeatureExtract.FeatureExtract(image, hCircle.circle)
             
             #Get the iris-code
-            tGenerate = TemplateGenerator.TemplateGenerator(fExtract.rubber_output_image, fExtract.height)
+            tGenerate = TemplateGenerator.TemplateGenerator(fExtract.rubber_output_image, fExtract.height, process, currentUID)
             
             #Display modified image.
             #cv2.imshow('iris', hCircle.img)
             #cv2.waitKey(0)
             #cv2.destroyAllWindows()
             
+            process = 1
             running = False

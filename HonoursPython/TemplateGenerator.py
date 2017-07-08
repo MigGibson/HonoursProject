@@ -1,11 +1,17 @@
 import cv2
 import numpy as np
 
+#To send a http RESTful request to service.
+import urllib
+
+#To match
+import Matching
+
 class TemplateGenerator:
         
         #Constructor method takes in the image of the iris that has been "rolled" out by the Feature Extractor.
         #Height is (for now) the height of the image which is (outer_radius - 15)
-        def __init__(self, img, height):
+        def __init__(self, img, height, typeOfProcess, cardUID):
             
             #An array of size 8 to get the iris-code.
             self.divisionSize = 24
@@ -47,9 +53,6 @@ class TemplateGenerator:
             #cv2.waitKey(0)
             #cv2.destroyAllWindows()
             
-            print 'Size:'
-            print self.code.size
-            
             #Break up the image into 8 parts (45 degrees of the circle).
             for i in range(1, self.divisionSize + 1):
                 
@@ -67,12 +70,45 @@ class TemplateGenerator:
                 #Store the code after letting the mean go through checks.
                 mean = np.mean(cropped_image)
                 
-                print 'Mean:'
-                print mean
+                #print 'Mean:'
+                #print mean
                 
-                if mean > 127.5:
+                if mean > 100:
                     self.code[i - 1] = 1
                 else:
                     self.code[i - 1] = 0
             
             print (self.code)
+            
+            #Check whether we should match or enrol the student.
+            #0 = Match
+            #1 = Enrol
+            if typeOfProcess == 0:
+                #Match the code.
+                matching = Matching.Matching(self.code)
+                
+                self.outcome = matching.outcome
+            else:
+                #Enrol the student.
+                #enrolUserIris(String cardUID, String irisHash)
+                #Initiates the opener to send the HTTP request.
+                opener = urllib.FancyURLopener({})
+                
+                #Send the request.
+                request = opener.open("http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.code)
+                response = request.read()
+                
+                #If the response is not empty.
+                if response != "{\"enrolUserIris\":\"\"}":
+                    answer = response[19,-2]
+                    
+                    #TODO set rgb light to:
+                    #0 = Blue
+                    #1 = Green and Blue
+                    if answer == "0":
+                        self.outcome = "Enrolled Successfully!"
+                        print "Enrolled Successfully!"
+                    else:
+                        self.outcome = "User already exists!"
+                        print "User already exists!"
+                    
