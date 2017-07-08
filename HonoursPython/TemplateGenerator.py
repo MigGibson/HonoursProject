@@ -68,10 +68,11 @@ class TemplateGenerator:
                 mean = np.mean(cropped_image)
                 
                 print 'Mean:'
-                print i
                 print mean
                 
                 if mean > 127.5:
                     self.code[i - 1] = 1
                 else:
                     self.code[i - 1] = 0
+            
+            print (self.code)
