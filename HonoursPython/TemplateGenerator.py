@@ -51,7 +51,7 @@ class TemplateGenerator:
             print self.code.size
             
             #Break up the image into 8 parts (45 degrees of the circle).
-            for i in range(1, self.divisionSize):
+            for i in range(1, self.divisionSize + 1):
                 
                 #Calculating the places to cut the image.
                 prev = (i - 1) * (360 / self.divisionSize)
