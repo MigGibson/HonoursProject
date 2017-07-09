@@ -105,8 +105,8 @@ class TemplateGenerator:
                 response = request.read()
                 
                 #If the response is not empty.
-                if response != "{\"enrolUserIris\":\"\"}":
-                    answer = response[18:-2]
+                if response != "{\"enrolUserIrisResult\":\"\"}":
+                    answer = response[24:-2]
                     
                     print answer
                     

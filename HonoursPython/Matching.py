@@ -18,8 +18,8 @@ class Matching:
             response = request.read()
             
             #If the response is not empty.
-            if response != "{\"getIrisHash\":\"\"}":
-                answer = response[16:-2]
+            if response != "{\"getIrisHashResult\":\"\"}":
+                answer = response[22:-2]
                 
                 print answer
                 
@@ -49,8 +49,8 @@ class Matching:
                     response = request.read()
                     
                     #If the response is not empty.
-                    if response != "{\"takeAttendance\":\"\"}":
-                        answer = response[19:-2]
+                    if response != "{\"takeAttendanceResult\":\"\"}":
+                        answer = response[25:-2]
                     
                         if answer == '0':
                             #TODO Show rgb green
