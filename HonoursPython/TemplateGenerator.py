@@ -85,7 +85,7 @@ class TemplateGenerator:
             self.temp = self.temp.replace("_","")
             self.temp = self.temp.replace("\n","")
             
-            print "http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp
+            #print "http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp
             
             #Check whether we should match or enrol the student.
             #0 = Match
@@ -108,15 +108,11 @@ class TemplateGenerator:
                 if response != "{\"enrolUserIrisResult\":\"\"}":
                     answer = response[23:-1]
                     
-                    print answer
-                    
                     #TODO set rgb light to:
                     #0 = Blue
                     #1 = Green and Blue
                     if answer == "0":
                         self.outcome = "Enrolled Successfully!"
-                        print "Enrolled Successfully!"
                     else:
                         self.outcome = "User already exists!"
-                        print "User already exists!"
                     
