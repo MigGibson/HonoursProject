@@ -83,6 +83,7 @@ class TemplateGenerator:
             self.temp = self.temp.replace("]","_")
             self.temp = self.temp.replace(".","_")
             self.temp = self.temp.replace("_","")
+            self.temp = self.temp.replace("\n","")
             
             print "http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp
             
