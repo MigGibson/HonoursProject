@@ -48,7 +48,7 @@ class Matching:
                     if response != "{\"takeAttendance\":\"\"}":
                         answer = response[20,-2]
                     
-                        if answer == '0'
+                        if answer == '0':
                             #TODO Show rgb green
                         else:
                             #TODO Show rgb red
