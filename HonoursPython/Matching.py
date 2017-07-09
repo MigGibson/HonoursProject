@@ -50,8 +50,10 @@ class Matching:
                     
                         if answer == '0':
                             #TODO Show rgb green
+                            print 'RGB Green'
                         else:
                             #TODO Show rgb red
+                            print 'RGB Red'
                     
                 else:
                     #Then it's not a match
