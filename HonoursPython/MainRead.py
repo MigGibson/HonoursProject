@@ -106,5 +106,8 @@ while running:
             #cv2.waitKey(0)
             #cv2.destroyAllWindows()
             
+            print tGenerate.outcome
+            
             process = 1
             running = False
+            GPIO.cleanup()

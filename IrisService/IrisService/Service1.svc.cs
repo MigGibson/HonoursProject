@@ -559,5 +559,40 @@ namespace IrisService
 
             return 1;
         }
+
+        //Retrieve irisHash from DB
+        public String getIrisHash(String cardUID)
+        {
+            String irisHash = "";
+
+            cmd = new MySqlCommand("SELECT * FROM iristb WHERE Card_UID = @cardUID;", connection);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@cardUID", cardUID);
+            connection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            MemoryStream mem = new MemoryStream();
+            BinaryFormatter binForm = new BinaryFormatter();
+
+            byte[] temp;
+
+            while (reader.Read())
+            {
+                if (reader["Iris_Template"] != DBNull.Value)
+                {
+                    temp = (byte[])reader["Iris_Template"];
+                    mem.Write(temp, 0, temp.Length);
+
+                    mem.Seek(0, SeekOrigin.Begin);
+                    irisHash = (String)binForm.Deserialize(mem);
+                }
+            }
+
+            connection.Close();
+            reader.Close();
+
+            return irisHash;
+        }
     }
 }

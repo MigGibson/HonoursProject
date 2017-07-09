@@ -130,6 +130,12 @@ namespace IrisService
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped)]
         int checkStudentLatestLecture(string studentNum);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/getIrisHash/{cardUID}",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        String getIrisHash(String cardUID);
     }
 
     [DataContract]

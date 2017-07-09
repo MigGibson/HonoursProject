@@ -85,12 +85,11 @@ class TemplateGenerator:
             #1 = Enrol
             if typeOfProcess == 0:
                 #Match the code.
-                matching = Matching.Matching(self.code)
+                matching = Matching.Matching(self.code, cardUID, self.divisionSize)
                 
                 self.outcome = matching.outcome
             else:
                 #Enrol the student.
-                #enrolUserIris(String cardUID, String irisHash)
                 #Initiates the opener to send the HTTP request.
                 opener = urllib.FancyURLopener({})
                 
