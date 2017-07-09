@@ -79,7 +79,7 @@ class TemplateGenerator:
                     self.code[i - 1] = 0
             
             print (self.code)
-            print self.code.tostring()
+            print np.array2string(self.code)
             
             #Check whether we should match or enrol the student.
             #0 = Match
