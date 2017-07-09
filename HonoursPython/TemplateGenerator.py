@@ -99,7 +99,7 @@ class TemplateGenerator:
                 
                 #If the response is not empty.
                 if response != "{\"enrolUserIris\":\"\"}":
-                    answer = response[19,-2]
+                    answer = response[19:-2]
                     
                     #TODO set rgb light to:
                     #0 = Blue
