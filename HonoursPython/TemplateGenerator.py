@@ -106,7 +106,7 @@ class TemplateGenerator:
                 
                 #If the response is not empty.
                 if response != "{\"enrolUserIrisResult\":\"\"}":
-                    answer = response[24:-2]
+                    answer = response[23:-1]
                     
                     print answer
                     

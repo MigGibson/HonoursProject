@@ -50,7 +50,7 @@ class Matching:
                     
                     #If the response is not empty.
                     if response != "{\"takeAttendanceResult\":\"\"}":
-                        answer = response[25:-2]
+                        answer = response[24:-1]
                     
                         if answer == '0':
                             #TODO Show rgb green
