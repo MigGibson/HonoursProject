@@ -65,6 +65,8 @@ while running:
             if response != "{\"checkEnrolmentCompletionResult\":\"\"}":
                 answer = response[36:-2]
                 
+                print answer
+                
                 if answer == "Enrolment Complete.":
                     process = 0
                     
