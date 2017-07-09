@@ -63,9 +63,9 @@ while running:
             
             #If the response is not empty.
             if response != "{\"checkEnrolmentCompletionResult\":\"\"}":
-                answer = response[36:-2]
+                answer = response[35:-2]
                 
-                print answer
+                #print answer
                 
                 if answer == "Enrolment Complete.":
                     process = 0
@@ -75,6 +75,7 @@ while running:
                     
                 if process == -1:
                     GPIO.cleanup()
+                    print 'No one found.'
                     #TODO: Set the rgb light to red.
                     break
             

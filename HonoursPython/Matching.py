@@ -18,7 +18,7 @@ class Matching:
             
             #If the response is not empty.
             if response != "{\"getIrisHash\":\"\"}":
-                answer = response[17:-2]
+                answer = response[16:-2]
                 
                 #Run through the characters.
                 for i in range(0, len(answer) - 1):
@@ -46,7 +46,7 @@ class Matching:
                     
                     #If the response is not empty.
                     if response != "{\"takeAttendance\":\"\"}":
-                        answer = response[20:-2]
+                        answer = response[19:-2]
                     
                         if answer == '0':
                             #TODO Show rgb green
