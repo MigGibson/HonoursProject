@@ -6,7 +6,6 @@ class Matching:
         #Constructor method takes in the hashed iris-code.
         def __init__(self, code, cardUID, size):
             
-            self.iCount = 0
             self.score = 0
             
             #Need to get the iris template from the DB.
@@ -21,19 +20,11 @@ class Matching:
             if response != "{\"getIrisHashResult\":\"\"}":
                 answer = response[22:-2]
                 
-                print answer
-                
                 #Run through the characters.
-                for i in range(0, len(answer) - 1):
-                    print i
-                    
-                    #If any are a 1 or 0
-                    if answer[i] == '1' or answer[i] == '0':
-                        #Then we know its part of the code.
-                        #Check if it's a match.
-                        if code[i] == answer[i]:
-                            self.score += 1
-                        self.iCount += 1
+                for i in range(0, len(answer)):
+                    #Check if it's a match.
+                    if code[i] == answer[i]:
+                        self.score += 1
                 
                 #If the score is above 80%
                 if self.score >= (0.8 * size):
@@ -51,6 +42,8 @@ class Matching:
                     #If the response is not empty.
                     if response != "{\"takeAttendanceResult\":\"\"}":
                         answer = response[24:-1]
+                    
+                        print answer
                     
                         if answer == '0':
                             #TODO Show rgb green

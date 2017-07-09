@@ -92,7 +92,7 @@ class TemplateGenerator:
             #1 = Enrol
             if typeOfProcess == 0:
                 #Match the code.
-                matching = Matching.Matching(self.code, cardUID, self.divisionSize)
+                matching = Matching.Matching(self.temp, cardUID, self.divisionSize)
                 
                 self.outcome = matching.outcome
             else:
