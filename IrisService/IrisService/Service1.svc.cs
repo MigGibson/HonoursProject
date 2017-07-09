@@ -161,7 +161,7 @@ namespace IrisService
 
             //Need to add if the student number is the card UID.
             //If it is then we should check with theh card UID and not the student number.
-            if (studentNum.Contains("."))
+            if (studentNum.Contains(","))
             {
                 //The student number is a cardUID.
                 test = "Card_UID";
