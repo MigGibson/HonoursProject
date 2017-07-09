@@ -95,6 +95,10 @@ while running:
             #piCam.capture(rawCapture, format="bgr")
             #image = rawCapture.array
             
+            cv2.imshow('Original Image', image)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
+            
             #Calls the constructor method in HoughCircle.py
             hCircle = HoughCircle.HoughCircle(image)
             
@@ -107,11 +111,6 @@ while running:
             
             #Get the iris-code
             tGenerate = TemplateGenerator.TemplateGenerator(fExtract.rubber_output_image, fExtract.height, process, currentUID)
-            
-            #Display modified image.
-            #cv2.imshow('iris', hCircle.img)
-            #cv2.waitKey(0)
-            #cv2.destroyAllWindows()
             
             print tGenerate.outcome
             

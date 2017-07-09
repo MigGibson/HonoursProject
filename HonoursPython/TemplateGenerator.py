@@ -48,6 +48,10 @@ class TemplateGenerator:
             element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3,3))
             done = False
             
+            cv2.imshow('Binarized', gOutput)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
+            
             while(not done):
                 
                 #Two common morphology operators:
