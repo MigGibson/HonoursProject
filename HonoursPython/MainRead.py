@@ -26,7 +26,7 @@ process = -1
 
 MIFAREReader = MFRC522.MFRC522()
 
-print "Started"
+print "Waiting for RFID..."
 
 while running:
 
