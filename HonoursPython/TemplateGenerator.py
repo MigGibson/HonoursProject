@@ -101,6 +101,8 @@ class TemplateGenerator:
                 if response != "{\"enrolUserIris\":\"\"}":
                     answer = response[18:-2]
                     
+                    print answer
+                    
                     #TODO set rgb light to:
                     #0 = Blue
                     #1 = Green and Blue
