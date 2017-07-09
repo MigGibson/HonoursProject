@@ -84,7 +84,7 @@ class TemplateGenerator:
             self.temp = self.temp.replace(".","_")
             self.temp = self.temp.replace("_","")
             
-            print "http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp
+            #print "http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp
             
             #Check whether we should match or enrol the student.
             #0 = Match
@@ -107,7 +107,7 @@ class TemplateGenerator:
                 if response != "{\"enrolUserIris\":\"\"}":
                     answer = response[18:-2]
                     
-                    #print answer
+                    print answer
                     
                     #TODO set rgb light to:
                     #0 = Blue
