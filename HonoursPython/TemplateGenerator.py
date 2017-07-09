@@ -18,16 +18,27 @@ class TemplateGenerator:
             self.code = np.zeros(self.divisionSize)
             
             #Gabor filter.
+            #The gabor filter highlights parallel lines according to the angle
+            #Parameters:
+            #ksize = Size of the filter (Shape of the input image)
+            #sigma = Standard Deviation
+            #theta = Orientation of the parallel stripes
+            #lambd = Wavelength of the sin factor
+            #gamma = Spatial aspect ratio
+            #psi = Phase offset
+            #ktype = Type of filter coefficients CV_32F or CV64F
             gKernel = cv2.getGaborKernel((height, 360), 4.0, np.radians(180), 10.0, 0.5, 0, ktype=cv2.CV_32F)
+            #Not sure why /1.5 (Need to ask)
             gKernel /= 1.5 * gKernel.sum()
             
             gOutput = np.zeros_like(img)
+            #Applies the kernel to an image.
             filtered = cv2.filter2D(img, cv2.CV_8UC3, gKernel)
             np.maximum(gOutput, filtered, gOutput)
             
-            #cv2.imshow('Gabor Filtered', gOutput)
-            #cv2.waitKey(0)
-            #cv2.destroyAllWindows()
+            cv2.imshow('Gabor Filtered', gOutput)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
             
             #Thinning
             iSize = np.size(gOutput)
@@ -39,19 +50,23 @@ class TemplateGenerator:
             
             while(not done):
                 
+                #Two common morphology operators:
+                #Erosion takes the minimal pixel value and replaces it's surroundings with that minimal pixel value.
                 eroded = cv2.erode(gOutput, element)
+                #Dilation takes the maximal pixel value and replaces the surroundings with that maximal pixel value.
                 temp = cv2.dilate(eroded, element)
+                #Subtract "removes" the found edges and reduces the main image.
                 temp = cv2.subtract(gOutput, temp)
                 tOutput = cv2.bitwise_or(tOutput, temp)
                 gOutput = eroded.copy()
-            
+                
                 total = iSize - cv2.countNonZero(gOutput)
                 if total == iSize:
                     done = True
-            
-            #cv2.imshow('Thinned', tOutput)
-            #cv2.waitKey(0)
-            #cv2.destroyAllWindows()
+                
+            cv2.imshow('Thinned', tOutput)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
             
             #Break up the image into 8 parts (45 degrees of the circle).
             for i in range(1, self.divisionSize + 1):

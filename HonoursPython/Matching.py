@@ -43,14 +43,12 @@ class Matching:
                     if response != "{\"takeAttendanceResult\":\"\"}":
                         answer = response[24:-1]
                     
-                        print answer
-                    
                         if answer == '0':
                             #TODO Show rgb green
-                            print 'RGB Green'
+                            print 'Student has attended.'
                         else:
                             #TODO Show rgb red
-                            print 'RGB Red'
+                            print 'Student has already attended.'
                     
                 else:
                     #Then it's not a match
