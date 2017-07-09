@@ -95,13 +95,15 @@ class TemplateGenerator:
                 
                 #Send the request.
                 request = opener.open("http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + np.array2string(self.code))
+                print "http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + np.array2string(self.code)
+                
                 response = request.read()
                 
                 #If the response is not empty.
                 if response != "{\"enrolUserIris\":\"\"}":
                     answer = response[18:-2]
                     
-                    print answer
+                    #print answer
                     
                     #TODO set rgb light to:
                     #0 = Blue
