@@ -79,7 +79,6 @@ class TemplateGenerator:
                     self.code[i - 1] = 0
             
             print (self.code)
-            print np.array2string(self.code)
             
             #Check whether we should match or enrol the student.
             #0 = Match
@@ -95,7 +94,7 @@ class TemplateGenerator:
                 opener = urllib.FancyURLopener({})
                 
                 #Send the request.
-                request = opener.open("http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.code.tostring())
+                request = opener.open("http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + np.array2string(self.code))
                 response = request.read()
                 
                 #If the response is not empty.
