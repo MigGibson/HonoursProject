@@ -94,7 +94,7 @@ class TemplateGenerator:
                 opener = urllib.FancyURLopener({})
                 
                 #Send the request.
-                request = opener.open("http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.code)
+                request = opener.open("http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.code.tostring())
                 response = request.read()
                 
                 #If the response is not empty.
