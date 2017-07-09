@@ -63,8 +63,7 @@ while running:
             
             #If the response is not empty.
             if response != "{\"checkEnrolmentCompletionResult\":\"\"}":
-                print response
-                answer = response[36, -2]
+                answer = response[[36],[-2]]
                 
                 if answer == "Enrolment Complete.":
                     process = 0
