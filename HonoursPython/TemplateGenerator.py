@@ -79,6 +79,7 @@ class TemplateGenerator:
                     self.code[i - 1] = 0
             
             print (self.code)
+            print self.code.tostring()
             
             #Check whether we should match or enrol the student.
             #0 = Match
