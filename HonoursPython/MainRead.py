@@ -58,7 +58,8 @@ while running:
             opener = urllib.FancyURLopener({})
             
             #Send the request.
-            request = opener.open("http://192.168.0.19:44556/Service1.svc/checkEnrolmentCompletion/" + currentUID)
+            #request = opener.open("http://192.168.0.19:44556/Service1.svc/checkEnrolmentCompletion/" + currentUID)
+            request = opener.open("http://192.168.43.114:44556/Service1.svc/checkEnrolmentCompletion/" + currentUID)
             response = request.read()
             
             #If the response is not empty.

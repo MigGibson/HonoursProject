@@ -120,7 +120,8 @@ class TemplateGenerator:
                 opener = urllib.FancyURLopener({})
                 
                 #Send the request.
-                request = opener.open("http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp)
+                #request = opener.open("http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp)
+                request = opener.open("http://192.168.43.114:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp)
                 response = request.read()
                 
                 #If the response is not empty.

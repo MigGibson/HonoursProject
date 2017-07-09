@@ -13,7 +13,8 @@ class Matching:
             opener = urllib.FancyURLopener({})
             
             #Send the request.
-            request = opener.open("http://192.168.0.19:44556/Service1.svc/getIrisHash/" + cardUID)
+            #request = opener.open("http://192.168.0.19:44556/Service1.svc/getIrisHash/" + cardUID)
+            request = opener.open("http://192.168.43.114:44556/Service1.svc/getIrisHash/" + cardUID)
             response = request.read()
             
             #If the response is not empty.
@@ -36,7 +37,8 @@ class Matching:
                     opener = urllib.FancyURLopener({})
                     
                     #Send the request.
-                    request = opener.open("http://192.168.0.19:44556/Service1.svc/takeAttendance/" + cardUID)
+                    #request = opener.open("http://192.168.0.19:44556/Service1.svc/takeAttendance/" + cardUID)
+                    request = opener.open("http://192.168.43.114:44556/Service1.svc/takeAttendance/" + cardUID)
                     response = request.read()
                     
                     #If the response is not empty.
