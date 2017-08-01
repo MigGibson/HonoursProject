@@ -81,20 +81,20 @@ while running:
                     break
             
             #Testing an image from UBIRIS
-            image = cv2.imread('test.jpg', 0)
+            #image = cv2.imread('test.jpg', 0)
             
             #Pi Camera instantiation.
-            #piCam = PiCamera()
+            piCam = PiCamera()
             
             #Raw capture is the RGB array of the pixels that the camera sees.
-            #rawCapture = PiRGBArray(piCam)
+            rawCapture = PiRGBArray(piCam)
             
             #Need to give the camera time to take the image.
-            #time.sleep(0.1)
+            time.sleep(0.1)
             
             #Captures the image and stores it.
-            #piCam.capture(rawCapture, format="bgr")
-            #image = rawCapture.array
+            piCam.capture(rawCapture, format="bgr")
+            image = rawCapture.array
             
             cv2.imshow('Original Image', image)
             cv2.waitKey(0)
