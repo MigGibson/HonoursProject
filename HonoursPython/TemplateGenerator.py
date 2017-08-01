@@ -133,6 +133,7 @@ class TemplateGenerator:
                     #1 = Green and Blue
                     if answer == "0":
                         self.outcome = "Enrolled Successfully!"
-                    else:
+                    if answer == "1":
                         self.outcome = "User already exists!"
-                    
+                    if answer == "2":
+                        self.outcome = "User has the same iris as someone else!"
