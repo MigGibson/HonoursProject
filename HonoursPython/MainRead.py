@@ -83,6 +83,11 @@ while running:
             #Testing an image from UBIRIS
             #image = cv2.imread('test.jpg', 0)
             
+            #Need to turn on the LED
+            GPIO.setmode(GPIO.BOARD)
+            GPIO.setup(12, GPIO.OUT)
+            GPIO.output(12, GPIO.HIGH)
+            
             #Pi Camera instantiation.
             piCam = PiCamera()
             
@@ -95,6 +100,10 @@ while running:
             #Captures the image and stores it.
             piCam.capture(rawCapture, format="bgr")
             image = rawCapture.array
+            
+            time.sleep(3)
+            
+            GPIO.output(12, GPIO.LOW)
             
             cv2.imshow('Original Image', image)
             cv2.waitKey(0)
