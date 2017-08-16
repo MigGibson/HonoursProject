@@ -113,7 +113,7 @@ while running:
             image2 = cv2.imread('Cam_Test.jpg')
             
             #Calls the constructor method in HoughCircle.py
-            hCircle = HoughCircle.HoughCircle(image)
+            hCircle = HoughCircle.HoughCircle(image2)
             
             cv2.imshow('Hough Circle', hCircle.img)
             cv2.waitKey(0)
