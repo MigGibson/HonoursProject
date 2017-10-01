@@ -13,9 +13,9 @@ from picamera import PiCamera
 import time
 
 #Need to turn on the LED
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(12, GPIO.OUT)
-GPIO.output(12, GPIO.HIGH)
+#GPIO.setmode(GPIO.BOARD)
+#GPIO.setup(12, GPIO.OUT)
+#GPIO.output(12, GPIO.HIGH)
 
 #Pi Camera instantiation.
 #piCam = PiCamera()
@@ -33,17 +33,17 @@ GPIO.output(12, GPIO.HIGH)
 #piCam.capture('cam_test.jpg')
 image = cv2.imread('cam_test.jpg', 0)
 
-time.sleep(2)
+#time.sleep(2)
 
-GPIO.output(12, GPIO.LOW)
+#GPIO.output(12, GPIO.LOW)
 
-GPIO.cleanup()
+#GPIO.cleanup()
 
 #cv2.imshow('Original Image', image)
 #cv2.waitKey(0)
 #cv2.destroyAllWindows()
 
-print 'test 5'
+print 'Start'
 
 #Calls the constructor method in HoughCircle.py
 hCircle = HoughCircle.HoughCircle(image)
@@ -52,4 +52,4 @@ cv2.imshow('Hough Circle', hCircle.img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-print 'test 6'
+print 'End'
