@@ -99,3 +99,4 @@ while running:
             print "\n"
         
         running = True
+        GPIO.cleanup()
