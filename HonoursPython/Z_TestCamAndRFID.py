@@ -102,7 +102,7 @@ while running:
         GPIO.output(12, GPIO.LOW)
         
         running = True
-        #GPIO.cleanup()
+        GPIO.cleanup()
         
         #cv2.imshow('Original Image', image)
         #cv2.waitKey(0)
