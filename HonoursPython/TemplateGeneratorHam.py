@@ -87,15 +87,7 @@ class TemplateGeneratorHam:
                 #cv2.destroyAllWindows()
                 
                 #Store the code after letting the mean go through checks.
-                mean = np.mean(cropped_image)
                 
-                #print 'Mean:'
-                #print mean
-                
-                if mean > 100:
-                    self.code[i - 1] = 1
-                else:
-                    self.code[i - 1] = 0
             
             self.temp = np.array2string(self.code).replace(" ","_")
             self.temp = self.temp.replace("[","_")

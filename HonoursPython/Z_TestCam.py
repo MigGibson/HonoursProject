@@ -6,6 +6,8 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
 
+import RPi.GPIO as GPIO
+
 #Need to turn on the LED
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(12, GPIO.OUT)
