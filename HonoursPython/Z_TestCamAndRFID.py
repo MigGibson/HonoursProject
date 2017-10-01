@@ -69,9 +69,6 @@ while running:
             MIFAREReader.MFRC522_Read(8)
             print "\n"
         
-        running = True
-        GPIO.cleanup()
-        
         #Need to turn on the LED
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(12, GPIO.OUT)
@@ -100,3 +97,6 @@ while running:
         cv2.imshow('Original Image', image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
+        
+        running = True
+        GPIO.cleanup()
