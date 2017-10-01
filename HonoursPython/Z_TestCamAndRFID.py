@@ -17,8 +17,6 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(12, GPIO.OUT)
 GPIO.output(12, GPIO.HIGH)
 
-print 'test 1'
-
 #Pi Camera instantiation.
 piCam = PiCamera()
 
@@ -33,16 +31,9 @@ time.sleep(0.1)
 #image = rawCapture.array
 
 piCam.capture('cam_test.jpg')
-
-print 'test 2'
-
 image = cv2.imread('cam_test.jpg', 0)
 
-print 'test 3'
-
 time.sleep(2)
-
-print 'test 4'
 
 GPIO.output(12, GPIO.LOW)
 
