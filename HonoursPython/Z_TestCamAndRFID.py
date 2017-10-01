@@ -43,9 +43,6 @@ GPIO.cleanup()
 #cv2.waitKey(0)
 #cv2.destroyAllWindows()
 
-if(image.channels()==3):
-	print 'It is 3'
-
 #Calls the constructor method in HoughCircle.py
 hCircle = HoughCircle.HoughCircle(image)
 
