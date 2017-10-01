@@ -75,8 +75,8 @@ while running:
         GPIO.output(12, GPIO.HIGH)
         
         #####################
-        GPIO.setup(29, GPIO.OUT)
-        GPIO.output(29, GPIO.LOW)
+        GPIO.setup(31, GPIO.OUT)
+        GPIO.output(31, GPIO.LOW)
         #####################
         
         #Pi Camera instantiation.
@@ -97,10 +97,11 @@ while running:
         
         time.sleep(2)
         
+        GPIO.output(31, GPIO.HIGH)
         GPIO.output(12, GPIO.LOW)
         
         running = True
-        GPIO.cleanup()
+        #GPIO.cleanup()
         
         cv2.imshow('Original Image', image)
         cv2.waitKey(0)

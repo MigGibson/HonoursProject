@@ -112,11 +112,11 @@ while running:
             cv2.waitKey(0)
             cv2.destroyAllWindows()
             
-            cv2.imwrite('Cam_Test.jpg', image)
-            image2 = cv2.imread('Cam_Test.jpg')
+            #cv2.imwrite('Cam_Test.jpg', image)
+            #image2 = cv2.imread('Cam_Test.jpg')
             
             #Calls the constructor method in HoughCircle.py
-            hCircle = HoughCircle.HoughCircle(image2)
+            hCircle = HoughCircle.HoughCircle(image)
             
             cv2.imshow('Hough Circle', hCircle.img)
             cv2.waitKey(0)
