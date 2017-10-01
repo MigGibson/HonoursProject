@@ -77,8 +77,6 @@ while running:
         #####################
         GPIO.setup(29, GPIO.OUT)
         GPIO.output(29, GPIO.HIGH)
-        time.sleep(3)
-        GPIO.output(29, GPIO.LOW)
         #####################
         
         #Pi Camera instantiation.
