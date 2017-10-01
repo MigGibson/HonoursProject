@@ -75,8 +75,10 @@ while running:
         GPIO.output(12, GPIO.HIGH)
         
         #####################
-        GPIO.setup(31, GPIO.OUT)
-        GPIO.output(31, GPIO.LOW)
+        GPIO.setup(33, GPIO.OUT)
+        GPIO.output(33, GPIO.LOW)
+        time.sleep(1)
+        GPIO.output(33, GPIO.HIGH)
         #####################
         
         #Pi Camera instantiation.
@@ -97,12 +99,18 @@ while running:
         
         time.sleep(2)
         
-        GPIO.output(31, GPIO.HIGH)
         GPIO.output(12, GPIO.LOW)
         
         running = True
         #GPIO.cleanup()
         
-        cv2.imshow('Original Image', image)
+        #cv2.imshow('Original Image', image)
+        #cv2.waitKey(0)
+        #cv2.destroyAllWindows()
+        
+        #Calls the constructor method in HoughCircle.py
+        hCircle = HoughCircle.HoughCircle(image)
+        
+        cv2.imshow('Hough Circle', hCircle.img)
         cv2.waitKey(0)
-        cv2.destroyAllWindows()        
+        cv2.destroyAllWindows()
