@@ -22,17 +22,17 @@ class HoughCircle:
             
             #Identify the circles. HoughCircles(image, detection method, inverse ratio, min distance between detected centers, upper threshold, center threshold, min radius, max radius) 
             #Works for camera
-            self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1.2, 100, 100, 30)
+            self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1.2, 100, 100, 10)
             
             #Works for dataset
             #self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1.2, 100, 100, 10)
             
-            print 'test hough 1'
+            print 'Evaluated'
             
             if self.circles is not None:
                 self.circles = np.uint16(np.around(self.circles))
                 
-                print 'test hough 2'
+                print 'Found'
                 
                 #Display the circles.
                 for i in self.circles[0,:]:
