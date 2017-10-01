@@ -43,6 +43,8 @@ GPIO.cleanup()
 #cv2.waitKey(0)
 #cv2.destroyAllWindows()
 
+print 'image taken'
+
 #Calls the constructor method in HoughCircle.py
 hCircle = HoughCircle.HoughCircle(image)
 
