@@ -18,19 +18,19 @@ GPIO.setup(12, GPIO.OUT)
 GPIO.output(12, GPIO.HIGH)
 
 #Pi Camera instantiation.
-piCam = PiCamera()
+#piCam = PiCamera()
 
 #Raw capture is the RGB array of the pixels that the camera sees.
-rawCapture = PiRGBArray(piCam)
+#rawCapture = PiRGBArray(piCam)
 
 #Need to give the camera time to take the image.
-time.sleep(0.1)
+#time.sleep(0.1)
 
 #Captures the image and stores it.
 #piCam.capture(rawCapture, format="bgr")
 #image = rawCapture.array
 
-piCam.capture('cam_test.jpg')
+#piCam.capture('cam_test.jpg')
 image = cv2.imread('cam_test.jpg', 0)
 
 time.sleep(2)
@@ -48,8 +48,8 @@ print 'test 5'
 #Calls the constructor method in HoughCircle.py
 hCircle = HoughCircle.HoughCircle(image)
 
-#cv2.imshow('Hough Circle', hCircle.img)
-#cv2.waitKey(0)
-#cv2.destroyAllWindows()
+cv2.imshow('Hough Circle', hCircle.img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
 print 'test 6'
