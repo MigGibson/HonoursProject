@@ -76,7 +76,7 @@ while running:
         
         #####################
         GPIO.setup(29, GPIO.OUT)
-        GPIO.output(29, GPIO.HIGH)
+        GPIO.output(29, GPIO.LOW)
         #####################
         
         #Pi Camera instantiation.
