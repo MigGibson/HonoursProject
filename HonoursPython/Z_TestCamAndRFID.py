@@ -5,6 +5,8 @@ import cv2
 import RPi.GPIO as GPIO
 import MFRC522
 
+import HoughCircle
+
 #Pi Camera Imports
 from picamera.array import PiRGBArray
 from picamera import PiCamera
