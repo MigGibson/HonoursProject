@@ -24,11 +24,15 @@ class HoughCircle:
             self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1, 20, 50, 30, 0, 0)
             #self.circles = cv2.HoughCircles(self.cimg, cv2.HOUGH_GRADIENT, 1, 20)
             
-			#Works for dataset
-			#self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1.2, 100, 100, 10)
+            #Works for dataset
+            #self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1.2, 100, 100, 10)
+            
+            print 'test hough 1'
             
             if self.circles is not None:
                 self.circles = np.uint16(np.around(self.circles))
+                
+                print 'test hough 2'
                 
                 #Display the circles.
                 for i in self.circles[0,:]:
