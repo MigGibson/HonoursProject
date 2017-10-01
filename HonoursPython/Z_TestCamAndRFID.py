@@ -95,13 +95,13 @@ while running:
         piCam.capture('cam_test.jpg')
         image = cv2.imread('cam_test.jpg', 0)
         
-        time.sleep(3)
+        time.sleep(2)
         
         GPIO.output(12, GPIO.LOW)
         
-        cv2.imshow('Original Image', image)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-        
         running = True
         GPIO.cleanup()
+        
+        cv2.imshow('Original Image', image)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()        
