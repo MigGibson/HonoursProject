@@ -97,3 +97,5 @@ while running:
             #Check to see if it was written
             MIFAREReader.MFRC522_Read(8)
             print "\n"
+        
+        running = True
