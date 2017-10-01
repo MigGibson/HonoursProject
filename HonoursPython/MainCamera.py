@@ -98,8 +98,11 @@ while running:
             time.sleep(0.1)
             
             #Captures the image and stores it.
-            piCam.capture(rawCapture, format="bgr")
-            image = rawCapture.array
+            #piCam.capture(rawCapture, format="bgr")
+            #image = rawCapture.array
+            
+            piCam.capture('cam_test.jpg')
+            image = cv2.imread('cam_test.jpg', 0)
             
             time.sleep(3)
             
