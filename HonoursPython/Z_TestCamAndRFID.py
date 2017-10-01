@@ -10,6 +10,8 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
 
+running = True
+
 MIFAREReader = MFRC522.MFRC522()
 
 print "Waiting for RFID..."
