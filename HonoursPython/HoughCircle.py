@@ -22,7 +22,7 @@ class HoughCircle:
             
             #Identify the circles. HoughCircles(image, detection method, inverse ratio, min distance between detected centers, upper threshold, center threshold, min radius, max radius) 
             #Works for camera
-            self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1.2, 100, 100, 29)
+            self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1.2, 100, 100, 25)
             
             #Works for dataset
             #self.circles = cv2.HoughCircles(self.img, cv2.HOUGH_GRADIENT, 1.2, 100, 100, 10)
