@@ -23,7 +23,7 @@ import urllib
 running = True
 previousUID = ""
 process = 0
-data = None
+data = []
 
 MIFAREReader = MFRC522.MFRC522()
 
