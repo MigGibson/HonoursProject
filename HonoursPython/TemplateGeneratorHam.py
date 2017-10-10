@@ -77,11 +77,11 @@ class TemplateGeneratorHam:
             self.codeCount = 0
             for i in range(height, 360):
             
-                print tOutput[i][3]
+                print tOutput[3][i]
                 
                 #Finding the next ridge.
                 #If the current place is white
-                if tOutput[i][3] == 0:
+                if tOutput[3][i] == 0:
                     #If a ridge is found
                     self.codeCount += 1
                     
