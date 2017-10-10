@@ -23,6 +23,7 @@ import urllib
 running = True
 previousUID = ""
 process = 0
+data = None
 
 MIFAREReader = MFRC522.MFRC522()
 
@@ -56,8 +57,9 @@ while running:
         status = MIFAREReader.MFRC522_Auth(MIFAREReader.PICC_AUTHENT1A, 8, key, uid)
         
         if status == MIFAREReader.MI_OK:
-            MIFAREReader.MFRC522_Read(8)
+            MIFAREReader.MFRC522_Read(8, data)
             MIFAREReader.MFRC522_StopCrypto1()
+            print data
         else:
             print "Authentication error"
             running = False
