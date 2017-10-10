@@ -81,7 +81,7 @@ class TemplateGeneratorHam:
                 
                 #Finding the next ridge.
                 #If the current place is white
-                if tOutput[3][i] == 0:
+                if tOutput[3][i] == 255:
                     #If a ridge is found
                     self.codeCount += 1
                     
