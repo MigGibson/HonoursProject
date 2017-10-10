@@ -104,8 +104,6 @@ class TemplateGeneratorHam:
             print "The generated code: "
             print self.temp
             
-            #print "http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp
-            
             #############################################
             
             #Check whether we should match or enrol the student.
@@ -122,7 +120,6 @@ class TemplateGeneratorHam:
             #    opener = urllib.FancyURLopener({})
             #    
             #    #Send the request.
-            #    #request = opener.open("http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp)
             #    request = opener.open("http://192.168.43.114:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp)
             #    response = request.read()
             #    
