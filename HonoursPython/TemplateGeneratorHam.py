@@ -11,7 +11,7 @@ class TemplateGeneratorHam:
         
         #Constructor method takes in the image of the iris that has been "rolled" out by the Feature Extractor.
         #Height is (for now) the height of the image which is (outer_radius - 15)
-        def __init__(self, img, height, typeOfProcess, cardUID):
+        def __init__(self, img, height, typeOfProcess, cardUID, data):
             
             #An array of size 8 to get the iris-code.
             self.divisionSize = 8
@@ -77,7 +77,7 @@ class TemplateGeneratorHam:
             self.codeCount = 0
             for i in range(height, 360):
             
-                print tOutput[3][i]
+                #print tOutput[3][i]
                 
                 #Finding the next ridge.
                 #If the current place is white
@@ -109,11 +109,11 @@ class TemplateGeneratorHam:
             #Check whether we should match or enrol the student.
             #0 = Match
             #1 = Enrol
-            #if typeOfProcess == 0:
-            #    #Match the code.
-            #    matching = MatchingHam.MatchingHam(self.temp, cardUID, self.divisionSize)
-            #    
-            #    self.outcome = matching.outcome
+            if typeOfProcess == 0:
+                #Match the code.
+                matching = MatchingHam.MatchingHam(self.code, cardUID, self.divisionSize, data)
+                
+                self.outcome = matching.outcome
             #else:
             #    #Enrol the student.
             #    #Initiates the opener to send the HTTP request.

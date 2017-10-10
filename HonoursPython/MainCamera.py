@@ -22,7 +22,8 @@ import urllib
 
 running = True
 previousUID = ""
-process = -1
+process = 0
+data = None
 
 MIFAREReader = MFRC522.MFRC522()
 
@@ -43,6 +44,28 @@ while running:
         
         #Check whether the previous UID matches the current.
         currentUID = str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3])
+    
+        ########################################
+        #Read data on the RFID card.
+        #Need key for authentication.
+        key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+        
+        #Select the tag.
+        MIFAREReader.MFRC522_SelectTag(uid)
+        
+        #Authenticate
+        status = MIFAREReader.MFRC522_Auth(MIFAREReader.PICC_AUTHENT1A, 8, key, uid)
+        
+        if status == MIFAREReader.MI_OK:
+            data = MIFAREReader.MFRC522_Read(8)
+            print data
+            MIFAREReader.MFRC522_StopCrypto1()
+        else:
+            print "Authentication error"
+            running = False
+            GPIO.cleanup()
+            break
+        ########################################
     
         #If the previousUID is not the same then we can continue the capture process.
         #When the code reaches the end and the user has been authenticated then we will update the previous UID.
@@ -113,8 +136,8 @@ while running:
             #cv2.waitKey(0)
             #cv2.destroyAllWindows()
             
-			############################################
-			
+            ############################################
+            
             #cv2.imwrite('Cam_Test.jpg', image)
             #image2 = cv2.imread('Cam_Test.jpg')
             
@@ -129,7 +152,7 @@ while running:
             fExtract = FeatureExtractCam.FeatureExtractCam(image, hCircle.circle)
             
             #Get the iris-code
-            tGenerate = TemplateGeneratorHam.TemplateGeneratorHam(fExtract.rubber_output_image, 15, process, currentUID)
+            tGenerate = TemplateGeneratorHam.TemplateGeneratorHam(fExtract.rubber_output_image, 15, process, currentUID, data)
             
             #print tGenerate.outcome
             
