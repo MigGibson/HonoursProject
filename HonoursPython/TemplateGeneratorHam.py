@@ -95,11 +95,11 @@ class TemplateGeneratorHam:
                     self.distance += 1
             
             self.temp = np.array2string(self.code).replace(" ","_")
-            self.temp = self.temp.replace("[","_")
-            self.temp = self.temp.replace("]","_")
-            self.temp = self.temp.replace(".","_")
-            self.temp = self.temp.replace("_","")
-            self.temp = self.temp.replace("\n","")
+            #self.temp = self.temp.replace("[","_")
+            #self.temp = self.temp.replace("]","_")
+            #self.temp = self.temp.replace(".","_")
+            #self.temp = self.temp.replace("_","")
+            #self.temp = self.temp.replace("\n","")
             
             print "The generated code: "
             print self.temp
