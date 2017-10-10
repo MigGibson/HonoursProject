@@ -109,9 +109,9 @@ while running:
             #
             #GPIO.output(12, GPIO.LOW)
             #
-            cv2.imshow('Original Image', image)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            #cv2.imshow('Original Image', image)
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
             
 			############################################
 			
@@ -121,9 +121,9 @@ while running:
             #Calls the constructor method in HoughCircle.py
             hCircle = HoughCircleCam.HoughCircleCam(image)
             
-            cv2.imshow('Hough Circle', hCircle.img)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            #cv2.imshow('Hough Circle', hCircle.img)
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
             
             #Get the cropped image from the identified circle
             fExtract = FeatureExtractCam.FeatureExtractCam(image, hCircle.circle)

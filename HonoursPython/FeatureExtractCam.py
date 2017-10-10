@@ -12,9 +12,9 @@ class FeatureExtractCam:
             #print 'Radius: '
             #print circle[2]
             
-            inner_radius = circle[2]
+            self.inner_radius = circle[2]
             
-            self.outter_radius = 15 + inner_radius
+            self.outter_radius = 15 + self.inner_radius
             
             #Apply histogram equalization to get the accuracy of the features.
             #self.histo_img = cv2.equalizeHist(img)
@@ -24,7 +24,7 @@ class FeatureExtractCam:
             output_image = np.zeros((15, 360))
             
             #For each "row"/"ring"
-            for r in range(inner_radius, self.outter_radius):
+            for r in range(self.inner_radius, self.outter_radius):
                 #all 360 degrees around the center
                 for degree in range(0, 360):
                     rad = np.radians(degree)
