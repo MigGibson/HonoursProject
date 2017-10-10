@@ -8,6 +8,14 @@ class MatchingHam:
             
             self.score = 0
             
+            answer = np.array2string(self.code).replace(" ","")
+            answer = answer.replace("[","")
+            answer = answer.replace("]","")
+            answer = answer.replace("."," ")
+            answer = answer.replace("\n","")
+            
+            print answer
+            
             #Run through the characters.
             for i in range(0, len(answer)):
                 #Check if it's a match.
