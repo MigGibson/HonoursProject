@@ -96,7 +96,7 @@ class TemplateGeneratorHam:
             
             self.temp = np.array2string(self.code).replace(" ","")
             self.temp = self.temp.replace("[","")
-            #self.temp = self.temp.replace("]","_")
+            self.temp = self.temp.replace("]","")
             self.temp = self.temp.replace("."," ")
             #self.temp = self.temp.replace("_","")
             self.temp = self.temp.replace("\n","")
