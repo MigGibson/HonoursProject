@@ -2,9 +2,9 @@
 import cv2
 
 #HoughCircle
-import HoughCircle
-import FeatureExtract
-import TemplateGenerator
+import HoughCircleCam
+import FeatureExtractCam
+import TemplateGeneratorHam
 
 #NFC/RFID Imports
 import RPi.GPIO as GPIO
@@ -54,10 +54,11 @@ while running:
             
             #Validate user and what their intended process is.
             
-            #Initiates the opener to send the HTTP request.
-            opener = urllib.FancyURLopener({})
-            
             ############################################
+            #Initiates the opener to send the HTTP request.
+            #opener = urllib.FancyURLopener({})
+            # 
+            #
             #Send the request.
             #request = opener.open("http://192.168.43.114:44556/Service1.svc/checkEnrolmentCompletion/" + currentUID)
             #response = request.read()
