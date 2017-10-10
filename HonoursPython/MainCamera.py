@@ -23,7 +23,7 @@ import urllib
 running = True
 previousUID = ""
 process = 0
-data = []
+data = ""
 
 MIFAREReader = MFRC522.MFRC522()
 
@@ -154,7 +154,7 @@ while running:
             #Get the iris-code
             tGenerate = TemplateGeneratorHam.TemplateGeneratorHam(fExtract.rubber_output_image, 15, process, currentUID, data)
             
-            #print tGenerate.outcome
+            print tGenerate.outcome
             
             process = 1
             running = False
