@@ -129,7 +129,7 @@ while running:
             fExtract = FeatureExtractCam.FeatureExtractCam(image, hCircle.circle)
             
             #Get the iris-code
-            tGenerate = TemplateGeneratorHam.TemplateGeneratorHam(fExtract.rubber_output_image, fExtract.height, process, currentUID)
+            tGenerate = TemplateGeneratorHam.TemplateGeneratorHam(fExtract.rubber_output_image, 15, process, currentUID)
             
             #print tGenerate.outcome
             
