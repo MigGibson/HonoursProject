@@ -10,16 +10,8 @@ class MatchingHam:
             
             self.score = 0
             
-            answer = answer.replace(" ","")
-            answer = answer.replace("[","")
-            answer = answer.replace("]","")
-            answer = answer.replace("."," ")
-            answer = answer.replace("\n","")
-            
-            print answer
-            
             #Run through the characters.
-            for i in range(0, len(answer)):
+            for i in range(0, len(code)):
                 #Check if it's a match.
                 if code[i] == answer[i]:
                     self.score += 1
