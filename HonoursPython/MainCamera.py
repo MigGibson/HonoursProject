@@ -57,57 +57,57 @@ while running:
             #Initiates the opener to send the HTTP request.
             opener = urllib.FancyURLopener({})
             
+            ############################################
             #Send the request.
-            #request = opener.open("http://192.168.0.19:44556/Service1.svc/checkEnrolmentCompletion/" + currentUID)
-            request = opener.open("http://192.168.43.114:44556/Service1.svc/checkEnrolmentCompletion/" + currentUID)
-            response = request.read()
-            
+            #request = opener.open("http://192.168.43.114:44556/Service1.svc/checkEnrolmentCompletion/" + currentUID)
+            #response = request.read()
+            #
             #If the response is not empty.
-            if response != "{\"checkEnrolmentCompletionResult\":\"\"}":
-                answer = response[35:-2]
-                
-                #print answer
-                
-                if answer == "Enrolment Complete.":
-                    process = 0
-                    
-                if answer == "Details have been submitted. Awaiting iris enrolment.":
-                    process = 1
-                    
-                if process == -1:
-                    GPIO.cleanup()
-                    print 'No one found.'
-                    #TODO: Set the rgb light to red.
-                    break
+            #if response != "{\"checkEnrolmentCompletionResult\":\"\"}":
+            #    answer = response[35:-2]
+            #    
+            #    #print answer
+            #    
+            #    if answer == "Enrolment Complete.":
+            #        process = 0
+            #        
+            #    if answer == "Details have been submitted. Awaiting iris enrolment.":
+            #        process = 1
+            #        
+            #    if process == -1:
+            #        GPIO.cleanup()
+            #        print 'No one found.'
+            #        #TODO: Set the rgb light to red.
+            #        break
+            #
+            ############################################
             
             #Testing an image from UBIRIS
             #image = cv2.imread('test.jpg', 0)
             
+            ############################################
             #Need to turn on the LED
-            GPIO.setmode(GPIO.BOARD)
-            GPIO.setup(12, GPIO.OUT)
-            GPIO.output(12, GPIO.HIGH)
+            #GPIO.setmode(GPIO.BOARD)
+            #GPIO.setup(12, GPIO.OUT)
+            #GPIO.output(12, GPIO.HIGH)
             
             #Pi Camera instantiation.
-            piCam = PiCamera()
+            #piCam = PiCamera()
             
             #Raw capture is the RGB array of the pixels that the camera sees.
-            rawCapture = PiRGBArray(piCam)
+            #rawCapture = PiRGBArray(piCam)
             
             #Need to give the camera time to take the image.
-            time.sleep(0.1)
+            #time.sleep(0.1)
             
             #Captures the image and stores it.
-            #piCam.capture(rawCapture, format="bgr")
-            #image = rawCapture.array
-            
-            piCam.capture('cam_test.jpg')
+            #piCam.capture('cam_test.jpg')
             image = cv2.imread('cam_test.jpg', 0)
             
-            time.sleep(3)
-            
-            GPIO.output(12, GPIO.LOW)
-            
+            #time.sleep(3)
+            #
+            #GPIO.output(12, GPIO.LOW)
+            #
             cv2.imshow('Original Image', image)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
