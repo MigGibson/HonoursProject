@@ -1,6 +1,8 @@
 #To send a http RESTful request to service.
 import urllib
 
+import numpy as np
+
 class MatchingHam:
         
         #Constructor method takes in the hashed iris-code.
