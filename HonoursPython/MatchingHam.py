@@ -10,7 +10,7 @@ class MatchingHam:
             
             self.score = 0
             
-            answer = np.array2string(answer).replace(" ","")
+            answer = answer.replace(" ","")
             answer = answer.replace("[","")
             answer = answer.replace("]","")
             answer = answer.replace("."," ")
