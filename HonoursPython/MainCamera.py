@@ -116,19 +116,19 @@ while running:
             #image2 = cv2.imread('Cam_Test.jpg')
             
             #Calls the constructor method in HoughCircle.py
-            hCircle = HoughCircle.HoughCircle(image)
+            hCircle = HoughCircleCam.HoughCircleCam(image)
             
             cv2.imshow('Hough Circle', hCircle.img)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
             
             #Get the cropped image from the identified circle
-            fExtract = FeatureExtract.FeatureExtract(image, hCircle.circle)
+            fExtract = FeatureExtractCam.FeatureExtractCam(image, hCircle.circle)
             
             #Get the iris-code
-            tGenerate = TemplateGenerator.TemplateGenerator(fExtract.rubber_output_image, fExtract.height, process, currentUID)
+            tGenerate = TemplateGeneratorHam.TemplateGeneratorHam(fExtract.rubber_output_image, fExtract.height, process, currentUID)
             
-            print tGenerate.outcome
+            #print tGenerate.outcome
             
             process = 1
             running = False

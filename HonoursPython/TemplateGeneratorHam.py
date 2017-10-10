@@ -14,7 +14,7 @@ class TemplateGeneratorHam:
         def __init__(self, img, height, typeOfProcess, cardUID):
             
             #An array of size 8 to get the iris-code.
-            self.divisionSize = 24
+            self.divisionSize = 8
             self.code = np.zeros(self.divisionSize)
             
             #Gabor filter.
@@ -72,22 +72,27 @@ class TemplateGeneratorHam:
             cv2.waitKey(0)
             cv2.destroyAllWindows()
             
-            #Break up the image into 8 parts (45 degrees of the circle).
-            for i in range(1, self.divisionSize + 1):
+            #Taking the thinned out image and determining the distance between the ridges of the eye.
+            self.distance = 0
+            self.codeCount = 0
+            for i in range(height, 360):
+            
+                print tOutput[i][3]
                 
-                #Calculating the places to cut the image.
-                prev = (i - 1) * (360 / self.divisionSize)
-                next = ((i) * (360 / self.divisionSize)) - 1
-                
-                #Cutting the image.
-                cropped_image = img[0:height - 1, prev:next]
-                
-                #cv2.imshow('Part', cropped_image)
-                #cv2.waitKey(0)
-                #cv2.destroyAllWindows()
-                
-                #Store the code after letting the mean go through checks.
-                
+                #Finding the next ridge.
+                #If the current place is white
+                if tOutput[i][3] == 0:
+                    #If a ridge is found
+                    self.codeCount += 1
+                    
+                    #If the code is not full.
+                    if self.codeCount < 8:
+                        self.code[self.codeCount] = self.distance
+                        self.distance = 0
+                    
+                else:
+                    #If ridge is not found
+                    self.distance += 1
             
             self.temp = np.array2string(self.code).replace(" ","_")
             self.temp = self.temp.replace("[","_")
@@ -96,36 +101,41 @@ class TemplateGeneratorHam:
             self.temp = self.temp.replace("_","")
             self.temp = self.temp.replace("\n","")
             
+            print "The generated code: "
+            print self.temp
+            
             #print "http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp
+            
+            #############################################
             
             #Check whether we should match or enrol the student.
             #0 = Match
             #1 = Enrol
-            if typeOfProcess == 0:
-                #Match the code.
-                matching = Matching.Matching(self.temp, cardUID, self.divisionSize)
-                
-                self.outcome = matching.outcome
-            else:
-                #Enrol the student.
-                #Initiates the opener to send the HTTP request.
-                opener = urllib.FancyURLopener({})
-                
-                #Send the request.
-                #request = opener.open("http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp)
-                request = opener.open("http://192.168.43.114:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp)
-                response = request.read()
-                
-                #If the response is not empty.
-                if response != "{\"enrolUserIrisResult\":\"\"}":
-                    answer = response[23:-1]
-                    
-                    #TODO set rgb light to:
-                    #0 = Blue
-                    #1 = Green and Blue
-                    if answer == "0":
-                        self.outcome = "Enrolled Successfully!"
-                    if answer == "1":
-                        self.outcome = "User already exists!"
-                    if answer == "2":
-                        self.outcome = "User has the same iris as someone else!"
+            #if typeOfProcess == 0:
+            #    #Match the code.
+            #    matching = MatchingHam.MatchingHam(self.temp, cardUID, self.divisionSize)
+            #    
+            #    self.outcome = matching.outcome
+            #else:
+            #    #Enrol the student.
+            #    #Initiates the opener to send the HTTP request.
+            #    opener = urllib.FancyURLopener({})
+            #    
+            #    #Send the request.
+            #    #request = opener.open("http://192.168.0.19:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp)
+            #    request = opener.open("http://192.168.43.114:44556/Service1.svc/enrolUserIris/" + cardUID + "/" + self.temp)
+            #    response = request.read()
+            #    
+            #    #If the response is not empty.
+            #    if response != "{\"enrolUserIrisResult\":\"\"}":
+            #        answer = response[23:-1]
+            #        
+            #        #TODO set rgb light to:
+            #        #0 = Blue
+            #        #1 = Green and Blue
+            #        if answer == "0":
+            #            self.outcome = "Enrolled Successfully!"
+            #        if answer == "1":
+            #            self.outcome = "User already exists!"
+            #        if answer == "2":
+            #            self.outcome = "User has the same iris as someone else!"
