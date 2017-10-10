@@ -57,7 +57,7 @@ while running:
         status = MIFAREReader.MFRC522_Auth(MIFAREReader.PICC_AUTHENT1A, 8, key, uid)
         
         if status == MIFAREReader.MI_OK:
-            MIFAREReader.MFRC522_Read(8, data)
+            data = MIFAREReader.MFRC522_Read(8)
             MIFAREReader.MFRC522_StopCrypto1()
             print data
         else:

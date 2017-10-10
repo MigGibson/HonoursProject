@@ -329,7 +329,7 @@ class MFRC522:
     self.ClearBitMask(self.Status2Reg, 0x08)
 
   #Adding a parameter to the function to get the result of the read.
-  def MFRC522_Read(self, blockAddr, data):
+  def MFRC522_Read(self, blockAddr):
     recvData = []
     recvData.append(self.PICC_READ)
     recvData.append(blockAddr)
@@ -342,7 +342,7 @@ class MFRC522:
     i = 0
     if len(backData) == 16:
       print "Sector "+str(blockAddr)+" "+str(backData)
-      data = str(backData)
+      return str(backData)
   
   def MFRC522_Write(self, blockAddr, writeData):
     buff = []
