@@ -166,18 +166,18 @@ while running:
             
             if tGenerate.outcome == "Enrolled Successfully!" or tGenerate.outcome == "Student has attended." :
                 GPIO.setup(29, GPIO.OUT)
-                GPIO.output(29, GPIO.HIGH)
+                GPIO.output(29, GPIO.LOW)
                 
-                time.sleep(10)
+                time.sleep(2)
                 
-                GPIO.output(29, GPIO.LOW)               
+                GPIO.output(29, GPIO.HIGH)               
             else:
                 GPIO.setup(31, GPIO.OUT)
-                GPIO.output(31, GPIO.HIGH)
-                
-                time.sleep(10)
-                
                 GPIO.output(31, GPIO.LOW)
+                
+                time.sleep(2)
+                
+                GPIO.output(31, GPIO.HIGH)
             
             print tGenerate.outcome
             
