@@ -26,7 +26,7 @@ time.sleep(0.1)
 #piCam.capture(rawCapture, format="bgr")
 #image = rawCapture.array
 
-piCam.capture('cam_test.jpg')
+piCam.capture('cam_test_2.jpg')
 
 GPIO.output(12, GPIO.LOW)
 GPIO.cleanup()

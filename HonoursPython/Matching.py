@@ -48,9 +48,11 @@ class Matching:
                         if answer == '0':
                             #TODO Show rgb green
                             print 'Student has attended.'
+                            self.outcome = 'Student has attended.'          
                         else:
                             #TODO Show rgb red
                             print 'Student has already attended.'
+                            self.outcome = 'Student has already attended.'
                     
                 else:
                     #Then it's not a match
