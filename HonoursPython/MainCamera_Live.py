@@ -161,7 +161,7 @@ while running:
             fExtract = FeatureExtractCam.FeatureExtractCam(image, hCircle.circle)
             
             #Get the iris-code
-            tGenerate = TemplateGenerator.TemplateGenerator(fExtract.rubber_output_image, 15, process, currentUID, data)
+            tGenerate = TemplateGenerator.TemplateGenerator(fExtract.rubber_output_image, 15, process, currentUID)
             
             if tGenerate.outcome == "Enrolled Successfully!" or tGenerate.outcome == "Student has attended." :
                 GPIO.setup(29, GPIO.OUT)
