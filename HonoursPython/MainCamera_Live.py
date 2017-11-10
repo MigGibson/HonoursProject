@@ -168,14 +168,14 @@ while running:
                 GPIO.setup(29, GPIO.OUT)
                 GPIO.output(29, GPIO.HIGH)
                 
-                time.sleep(3)
+                time.sleep(10)
                 
                 GPIO.output(29, GPIO.LOW)               
             else:
                 GPIO.setup(31, GPIO.OUT)
                 GPIO.output(31, GPIO.HIGH)
                 
-                time.sleep(1)
+                time.sleep(10)
                 
                 GPIO.output(31, GPIO.LOW)
             
