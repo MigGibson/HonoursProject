@@ -5,6 +5,7 @@ import cv2
 import HoughCircleCam
 import FeatureExtractCam
 import TemplateGeneratorHam
+import TemplateGenerator
 
 #NFC/RFID Imports
 import RPi.GPIO as GPIO
